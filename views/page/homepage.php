@@ -1,0 +1,294 @@
+<style>
+  .pad-left-5 {
+    padding-left: 5px;
+  }
+
+  .pad-10 {
+    padding: 10px;
+  }
+
+  .carousel {
+    max-height: 500px;
+    position: relative;
+  }
+
+  .carousel-item {
+    max-height: 500px;
+    height: 60vh;
+  }
+
+  .mr-bot-10 {
+    margin-bottom: 10px;
+  }
+
+  .margin-auto-0 {
+    margin-right: 0;
+  }
+</style>
+<header>
+  <div class="row pad-10 ml-2 mr-2">
+    <div class="col-lg-5 mr-bot-10">
+      <div class="card ">
+        <div class="card-body">
+          <h4 class="card-title">เช็คราคาและรถว่าง</h4>
+          <form class="forms-sample" action="<?php echo URL ?>manage_booking/search_car">
+            <div class="form-group">
+              <label for="exampleInputName1">จังหวัด</label>
+              <select class="form-control" id="exampleInputName1">
+                <option> เลือกจังหวัด </option>
+                <option> กรุงเทพ </option>
+                <option> ภูเก็ต </option>
+              </select>
+            </div>
+            <!-- <div class="form-group">
+              <label for="exampleInputEmail3"> สถานที่รับรถ </label>
+              <select class="form-control" id="exampleInputName1">
+                <option> เลือกสถานที่รับรถ </option>
+                <option> สนามบินดอนเมือง </option>
+                <option> สนามบินภูเก็ต </option>
+              </select>
+            </div> -->
+            <div class="form-group">
+              <label for="exampleInputPassword4"> วันที่รับรถ </label>
+              <div id="pick-up" class="input-group date datepicker datepicker-popup">
+                <input type="text" class="form-control">
+                <span class="input-group-addon input-group-append border-left">
+                  <span class="fa fa-calendar-alt input-group-text"></span>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputCity1"> วันที่คืนรถ </label>
+              <div id="return" class="input-group date datepicker datepicker-popup">
+                <input type="text" class="form-control">
+                <span class="input-group-addon input-group-append border-left">
+                  <span class="fa fa-calendar-alt input-group-text"></span>
+                </span>
+              </div>
+            </div>
+            <center><button type="submit" class="btn btn-success"> ค้นหารถเช่า <i class="pad-left-5 fa fa-check"></i></button></center>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" style="background-image: url('http://placehold.it/800x800')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>First Slide</h3>
+              <p>This is a description for the first slide.</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://placehold.it/800x800')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Second Slide</h3>
+              <p>This is a description for the second slide.</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('http://placehold.it/800x800')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Third Slide</h3>
+              <p>This is a description for the third slide.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+
+  <h1 class="my-4">Booking</h1>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#chiang_mai">เชียงใหม่</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu1">กรุงเทพ</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu2">ภูเก็ต</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu2">ขอนแก่น</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu2">ภูเก็ต</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        จังหวัดอื่นๆ
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">นนทบุรี</a>
+        <a class="dropdown-item" href="#">เชียงราย</a>
+        <a class="dropdown-item" href="#">กระบี่</a>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="chiang_mai" class="container tab-pane active"><br>
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+
+            <div class="card-body">
+              <a href="#">
+                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+              </a>
+            </div>
+            <div class="card-footer margin-auto-0">
+              <a href="#" class="btn btn-primary ">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+
+            <div class="card-body">
+              <a href="#">
+                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+              </a>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+
+            <div class="card-body">
+              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <div id="menu1" class="container tab-pane fade"><br>
+      <!-- Marketing Icons Section -->
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+
+            <div class="card-body">
+              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+
+            <div class="card-body">
+              <a href="#">
+                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+              </a>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <div id="menu2" class="container tab-pane fade"><br>
+      <!-- Marketing Icons Section -->
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+
+            <div class="card-body">
+              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+
+            <div class="card-body">
+              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+            </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+  </div>
+  <!-- Marketing Icons Section -->
+
+
+
+
+
+
+</div>
+<!-- /.container -->
+<script>
+  (function($) {
+
+    'use strict';
+    $('.datepicker-popup').datepicker({
+      enableOnReadonly: true,
+      todayHighlight: true,
+      format: "dd/mm/yyyy"
+    });
+    var today = new Date();
+    var tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+    $('#pick-up').datepicker('setDate', today);
+    $('#return').datepicker('setDate', tomorrow);
+  })(jQuery);
+</script>
