@@ -14,4 +14,5 @@ define('DB_PASS', '');
 
 //paths
 define('URL', 'http://localhost/Rent-Car/');
+define('URL_API', '158.108.207.201/drivecar/rest/services');
 define('LIBS', 'libs/');

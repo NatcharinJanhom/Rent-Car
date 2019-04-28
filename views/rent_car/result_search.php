@@ -31,8 +31,17 @@
     .bg-silver {
         background-color: #e9ecef;
     }
-    .fa.fa-car , .fa.fa-user{
+
+    .fa.fa-car,
+    .fa.fa-user {
         font-size: 20px;
+    }
+
+    .img-fluid-car {
+        max-width: 400px;
+        max-height: 200px;
+        width: 100%;
+        height: 100%;
     }
 </style>
 
@@ -48,7 +57,7 @@
                 <option> ภูเก็ต </option>
             </select>
         </div>
-      
+
         <div class="col-3 col-md-3 col-lg-3">
             <label for="exampleInputPassword4"> วันที่รับรถ </label>
             <div id="pick-up" class="input-group date datepicker datepicker-popup">
@@ -147,7 +156,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
@@ -155,14 +164,14 @@
                                     <p><span><i class="fa fa-car"></i></span> รถเก๋ง <span><i class="fa fa-user"></i></span> 5 </p>
                                     <hr>
                                     <h4><span>฿ </span>950 / วัน</h4>
-                                    <a href="<?php echo URL?>manage_booking/detail_car" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                                    <a href="<?php echo URL ?>manage_booking/detail_car" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
                                 </div>
                             </div>
                             <hr>
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
@@ -177,7 +186,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
@@ -192,7 +201,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
@@ -202,7 +211,7 @@
                                     <h4><span>฿ </span>400 / วัน</h4>
                                     <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -225,4 +234,23 @@
         $('#pick-up').datepicker('setDate', today);
         $('#return').datepicker('setDate', tomorrow);
     })(jQuery);
+
+    // $.ajax({
+    //     url: "http://localhost:8080/drivecar/rest/services/rents/cars",
+    //     method: 'GET',
+    //     contentType: "application/json; charset=utf-8",
+    //     dataType: "json",
+    //     crossDomain: true,
+    //     data: {
+    //         "start_date": "2019-04-16",
+    //         "end_date": "2019-04-17",
+    //         "province_id": 1
+    //     },
+    //     success: function(data) {
+    //         console.log(data);
+    //     },
+    //     error: (res) => {
+    //         console.log(res);
+    //     }
+    // });
 </script>

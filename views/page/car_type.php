@@ -31,6 +31,12 @@
         margin-right: auto;
         }
     }
+    .img-fluid-car{
+        max-width: 400px;
+        max-height: 200px;
+        width:100%;
+        height:100%;
+    }
 </style>
 <div class="container">
     <div class="card mb-4">
@@ -40,7 +46,7 @@
             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
@@ -55,7 +61,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
@@ -70,7 +76,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
@@ -85,7 +91,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
@@ -100,7 +106,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                                        <img class="img-fluid" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
