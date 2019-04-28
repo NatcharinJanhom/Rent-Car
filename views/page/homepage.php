@@ -24,6 +24,12 @@
   .margin-auto-0 {
     margin-right: 0;
   }
+  .img-fluid-car{
+        max-width: 400px;
+        max-height: 200px;
+        width:100%;
+        height:100%;
+    }
 </style>
 <header>
   <div class="row pad-10 ml-2 mr-2">
@@ -66,6 +72,7 @@
                 </span>
               </div>
             </div>
+        
             <center><button type="submit" class="btn btn-success"> ค้นหารถเช่า <i class="pad-left-5 fa fa-check"></i></button></center>
           </form>
         </div>
@@ -80,24 +87,21 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('http://placehold.it/800x800')">
+          <div class="carousel-item active" style="background-image: url('<?php echo URL ?>image/original-1416034605429.jpg')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
+             
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('http://placehold.it/800x800')">
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
+            
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('http://placehold.it/800x800')">
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/super-white-revo.png')">
             <div class="carousel-caption d-none d-md-block">
-              <h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
+             
             </div>
           </div>
         </div>
@@ -153,7 +157,7 @@
 
             <div class="card-body">
               <a href="#">
-                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
               </a>
             </div>
             <div class="card-footer margin-auto-0">
@@ -166,7 +170,7 @@
 
             <div class="card-body">
               <a href="#">
-                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
               </a>
             </div>
             <div class="card-footer">
@@ -178,7 +182,7 @@
           <div class="card h-100">
 
             <div class="card-body">
-              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+              <a href="#"> <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt=""> </a>
             </div>
             <div class="card-footer">
               <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>

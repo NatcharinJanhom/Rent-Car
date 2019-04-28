@@ -34,6 +34,12 @@
     .font-weight-500 {
         font-weight: bold;
     }
+    .img-fluid-car{
+        max-width: 400px;
+        max-height: 200px;
+        width:100%;
+        height:100%;
+    }
 </style>
 <div class="container">
     <div class="card mt-4 mb-4">
@@ -55,7 +61,7 @@
             <div class="row mb-2">
                 <div class="col-lg-6 col-md-6">
                     <a href="#">
-                        <img class="img-fluid" src="http://placehold.it/400x300" alt="">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
                     </a>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -118,6 +124,11 @@
                             <div class="col-auto mr-auto pr-0"><small>ชำระ ณ วันที่รับรถเช่า และได้รับคืนเมื่อสิ้นสุดการเช่า</small></div>
                         </div>
                     </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+                        <label class="custom-control-label" for="customCheck"> <span><i class="fa fa-user"></i></span> พร้อมคนขับรถ + ฿500</label>
+                    </div>
+
                     <div align="right">
                         <a href="<?php echo URL ?>manage_booking/booking" class="btn btn-primary">เลือกรถคันนี้</a>
                     </div>

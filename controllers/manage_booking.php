@@ -22,5 +22,9 @@ class Manage_Booking extends Controller {
 	{
 		$this->view->render('rent_car/booking_detail');
 	}
+	function booking_detail()
+	{
+		$this->view->render('rent_car/booking_no_user');
+	}
 
 }
