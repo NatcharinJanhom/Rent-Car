@@ -234,23 +234,4 @@
         $('#pick-up').datepicker('setDate', today);
         $('#return').datepicker('setDate', tomorrow);
     })(jQuery);
-
-    // $.ajax({
-    //     url: "http://localhost:8080/drivecar/rest/services/rents/cars",
-    //     method: 'GET',
-    //     contentType: "application/json; charset=utf-8",
-    //     dataType: "json",
-    //     crossDomain: true,
-    //     data: {
-    //         "start_date": "2019-04-16",
-    //         "end_date": "2019-04-17",
-    //         "province_id": 1
-    //     },
-    //     success: function(data) {
-    //         console.log(data);
-    //     },
-    //     error: (res) => {
-    //         console.log(res);
-    //     }
-    // });
 </script>
