@@ -40,4 +40,9 @@
 a ,a:hover{
   text-decoration: none;
 }
+footer{
+  bottom: 0px;
+  position:absolute;
+  width:100%;
+}
   </style>

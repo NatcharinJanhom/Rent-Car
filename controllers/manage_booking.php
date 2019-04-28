@@ -12,6 +12,11 @@ class Manage_Booking extends Controller {
 
 	function search_car()
 	{
+		$data = array(
+			"start_date"=> "2019-04-16",
+			"end_date"=> "2019-04-17",
+			"province_id"=> 1
+		);
 		$this->view->render('rent_car/result_search');
 	}
 	function detail_car()
