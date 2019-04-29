@@ -11,7 +11,7 @@ require 'libs/View.php';
 // Library
 require 'libs/Database.php';
 require 'libs/Session.php';
-
+require 'views/inc/function.php';
 
 $bootstrap = new MVCmanage();
 $bootstrap->init();
