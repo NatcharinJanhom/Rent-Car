@@ -16,10 +16,9 @@
         <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
           <div class="row w-100">
             <div class="col-lg-4 mx-auto">
-              <div class="auto-form-wrapper">
-                
+              <div class="auto-form-wrapper" style="padding:40px">
 
-                <form  method="post" id="login" action="login/check_login">
+                <form  method="post" id="login" action="<?php echo URL ?>auth/login">
                   <div class="form-group">
                     <label class="label">Username</label>
                     <div class="input-group">
@@ -30,7 +29,7 @@
                         </span>
                       </div>
                     </div>
-            
+
                   </div>
                   <div class="form-group">
                     <label class="label">Password</label>
@@ -53,20 +52,20 @@
                       <label class="form-check-label">
                         <input type="checkbox" class="form-check-input" checked> Keep me signed in </label>
                     </div>
-                    <!-- <a href='@Url.Action("Edit", "Student", 
+                    <!-- <a href='@Url.Action("Edit", "Student",
                             new { id = item.DealPostID })'>Hello          </a> -->
                     <a href="#" class="text-small forgot-password text-black">Forgot Password</a>
                   </div>
                   <div class="text-block text-center my-3">
                     <span class="text-small font-weight-semibold">Not a member ?</span>
-                    <a href='<?php echo URL ?>login/register' class="text-black text-small">Create new account</a>
+                    <a href='<?php echo URL ?>register' class="text-black text-small">Create new account</a>
                   </div>
                 </form>
 
 
               </div>
               <ul class="auth-footer">
-               
+
               </ul>
               <p class="footer-text text-center"></p>
             </div>
