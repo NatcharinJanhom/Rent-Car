@@ -24,26 +24,35 @@
   .margin-auto-0 {
     margin-right: 0;
   }
-  .img-fluid-car{
-        max-width: 400px;
-        max-height: 200px;
-        width:100%;
-        height:100%;
-    }
+
+  .img-fluid-car {
+    max-width: 400px;
+    max-height: 200px;
+    width: 100%;
+    height: 100%;
+  }
 </style>
 <header>
+
+  <?php $province = $this->province; ?>
+  <?php $province = json_decode($province); ?>
   <div class="row pad-10 ml-2 mr-2">
     <div class="col-lg-5 mr-bot-10">
       <div class="card ">
         <div class="card-body">
           <h4 class="card-title">เช็คราคาและรถว่าง</h4>
-          <form class="forms-sample" action="<?php echo URL ?>manage_booking/search_car">
+          <form id="search_car"class="forms-sample" action="<?php echo URL ?>manage_booking/search_car">
             <div class="form-group">
               <label for="exampleInputName1">จังหวัด</label>
-              <select class="form-control" id="exampleInputName1">
-                <option> เลือกจังหวัด </option>
-                <option> กรุงเทพ </option>
-                <option> ภูเก็ต </option>
+              <select class="form-control" id="exampleInputName1" name="provine_id">
+                <option value=""> เลือกจังหวัด </option>
+                <?php if ($province->status == "200") :
+                  foreach ($province->result as $key => $value) { 
+                    echo "<option value='$value->provinceId'> $value->name </option>";
+                  }
+                  ?>
+
+                <?php endif; ?>
               </select>
             </div>
             <!-- <div class="form-group">
@@ -57,7 +66,7 @@
             <div class="form-group">
               <label for="exampleInputPassword4"> วันที่รับรถ </label>
               <div id="pick-up" class="input-group date datepicker datepicker-popup">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="start_date" name="start_date">
                 <span class="input-group-addon input-group-append border-left">
                   <span class="fa fa-calendar-alt input-group-text"></span>
                 </span>
@@ -66,14 +75,14 @@
             <div class="form-group">
               <label for="exampleInputCity1"> วันที่คืนรถ </label>
               <div id="return" class="input-group date datepicker datepicker-popup">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" id="end_date" name="end_date">
                 <span class="input-group-addon input-group-append border-left">
                   <span class="fa fa-calendar-alt input-group-text"></span>
                 </span>
               </div>
             </div>
-        
-            <center><button type="submit" class="btn btn-success"> ค้นหารถเช่า <i class="pad-left-5 fa fa-check"></i></button></center>
+
+            <center><button type="submit" class="btn btn-success btn_search_car"> ค้นหารถเช่า <i class="pad-left-5 fa fa-check"></i></button></center>
           </form>
         </div>
       </div>
@@ -89,19 +98,19 @@
           <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active" style="background-image: url('<?php echo URL ?>image/original-1416034605429.jpg')">
             <div class="carousel-caption d-none d-md-block">
-             
+
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg')">
             <div class="carousel-caption d-none d-md-block">
-            
+
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/super-white-revo.png')">
             <div class="carousel-caption d-none d-md-block">
-             
+
             </div>
           </div>
         </div>
@@ -296,3 +305,20 @@
     $('#return').datepicker('setDate', tomorrow);
   })(jQuery);
 </script>
+
+<!-- <script>
+  function toYMD(date)
+  {
+    var temp = date.split("/");
+    return temp[2]+"-"+ temp[1]+"-"+ temp[0];
+  }
+  $(".btn_search_car").click(function(){
+    var start_date=$("#start_date").val();
+    var end_date=$("#end_date").val();
+    
+    $("#start_date").val(toYMD(start_date));
+    $("#end_date").val(toYMD(end_date));
+    $("#search_car").submit();
+
+  });
+</script> -->

@@ -10,8 +10,7 @@ class home extends Controller
 
 	function index()
 	{
-		
-		$province =ApiHelper::callAPI("GET",URL_API."/rest/services/provinces");
+		$province =ApiHelper::callAPI("GET",URL_API."/provinces");
 		$this->view->province = $province;
 		$this->view->render('page/homepage');
 	}
