@@ -50,20 +50,20 @@
     <?php $data_search = $this->data_search; ?>
     <?php $province = json_decode($province); ?>
     <?php $carList = json_decode($this->carList); ?>
-    <form class="row pad-10" action="<?php echo URL ?>manage_booking/search_car">
+    <form id="search_car" class="row pad-10" action="<?php echo URL ?>manage_booking/search_car">
         <div class="col-1 col-md-1 col-lg-1">
         </div>
         <div class="col-3 col-md-3 col-lg-3">
-            <label for="exampleInputName1">จังหวัด</label>
-            <select class="form-control" id="exampleInputName1" name="provine_id">
+            <label for="provine_id">จังหวัด</label>
+            <select class="form-control" id="provine_id" name="provine_id">
                 <option value=""> เลือกจังหวัด </option>
                 <?php if ($province->status == "200") :
                     foreach ($province->result as $key => $value) {
                         if ($data_search['provine_id'] != $value->provinceId) {
-                                echo "<option value='$value->provinceId'> " . $value->name . " </option>";
-                            } else {
-                                echo "<option value='$value->provinceId' selected> $value->name </option>";
-                            }
+                            echo "<option value='$value->provinceId'> " . $value->name . " </option>";
+                        } else {
+                            echo "<option value='$value->provinceId' selected> $value->name </option>";
+                        }
                     }
                     ?>
 
@@ -90,7 +90,7 @@
             </div>
         </div>
         <div class="col-2 col-md-2 col-lg-2">
-            <button type="submit" class="btn btn-success mr-top-32 btn_search_car"> ค้นหารถเช่า <i class="pad-left-5 fa fa-check"></i></button>
+            <button type="button" class="btn btn-success mr-top-32 btn_search_car"> ค้นหารถเช่า <i class="pad-left-5 fa fa-check"></i></button>
         </div>
     </form>
 
@@ -102,7 +102,7 @@
             <nav aria-label="breadcrumb" id="breadcrumb">
                 <ol class="breadcrumb breadcrumb-custom">
                     <li class="breadcrumb-item">
-                        <a href="#breadcrumb">ผลการค้นหา</a>
+                        <span class="text-primary">ผลการค้นหา</span>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         <span>รายละเอียดรถ</span>
@@ -112,7 +112,6 @@
                     </li>
                 </ol>
             </nav>
-            <?php print_r($carList); ?>
             <div class="card">
                 <div class="card-body  bg-silver">
                     <div class="row mb-4">
@@ -166,65 +165,71 @@
                         </div>
                     </div>
 
-                    <?php foreach ($carList->result as $key=>$value): ?>
-                    <?php if ($key !=0) {
+                    <?php foreach ($carList->result as $key => $value) : ?>
+                        <?php
                         echo "<hr>";
-                    } ?>
+                        ?>
 
-                    <div class="row mb-2">
-                    <?php if($value->typeCar == "รถเก๋ง") :?>
-                    <div class="col-lg-4 col-md-4">
-                            <a href="#">
-                                <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
-                            </a>
+                        <div class="row mb-2">
+                            <?php if ($value->typeCar == "รถเก๋ง") : ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ($value->typeCar == "รถกระบะ") : ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ($value->typeCar == "รถตู้") : ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ($value->typeCar == "รถทัวร์") : ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
+                                    </a>
+                                </div>
+
+                            <?php endif; ?>
+                            <div class="col-lg-8 col-md-8">
+                                <p><?php echo $value->brand; ?> </p>
+                                <p><span><i class="fa fa-car"></i></span> <?php echo $value->typeCar ?> <span><i class="fa fa-user"></i></span> <?php echo $value->seatCount ?> </p>
+                                <hr>
+                                <h4><span>฿ </span><?php echo $value->price ?> / วัน</h4>
+                                <button type="button" class="btn btn-primary car-detail" data-carId="<?php echo $value->carId ?>" data-provine_id="<?php echo $data_search['provine_id'] ?>" data-start_date="<?php echo $data_search['start_date'] ?>" data-end_date="<?php echo $data_search['end_date'] ?>">รายละเอียดเพิ่มเติม</button>
+                            </div>
                         </div>
-                    <?php elseif($value->typeCar == "รถกระบะ") :?>  
-                    <div class="col-lg-4 col-md-4">
-                            <a href="#">
-                                <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
-                            </a>
-                        </div>
-                        <?php elseif($value->typeCar == "รถตู้") :?>  
-                        <div class="col-lg-4 col-md-4">
-                            <a href="#">
-                                <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
-                            </a>
-                        </div> 
-                        <?php elseif($value->typeCar == "รถจักรยานยนต์") :?> 
-                        <div class="col-lg-4 col-md-4">
-                            <a href="#">
-                                <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
-                            </a>
-                        </div> 
-                        <?php elseif($value->typeCar == "รถจักรยานยนต์") :?> 
-                        <div class="col-lg-4 col-md-4">
-                            <a href="#">
-                                <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
-                            </a>
-                        </div>
-                        <?php elseif($value->typeCar == "รถทัวร์") :?> 
-                        <div class="col-lg-4 col-md-4">
-                            <a href="#">
-                                <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
-                            </a>
-                        </div>
-                        
-                <?php endif;?>
-                <div class="col-lg-8 col-md-8">
-                            <p><?php echo $value->brand; ?> </p>
-                            <p><span><i class="fa fa-car"></i></span> <?php echo $value->typeCar ?> <span><i class="fa fa-user"></i></span> <?php echo $value->seatCount ?> </p>
-                            <hr>
-                            <h4><span>฿ </span><?php echo $value->price ?> / วัน</h4>
-                            <a href="<?php echo URL ?>manage_booking/detail_car" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-                        </div>
-                    </div>
-          
-                <?php endforeach; ?>
+
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<form id="form_data_search" method="GET" action="<?php echo URL ?>manage_booking/detail_car">
+    <input type="hidden" id="detail_provine_id" name="provine_id" value="">
+    <input type="hidden" id="detail_start_date" name="start_date" value="">
+    <input type="hidden" id="detail_end_date" name="end_date" value="">
+    <input type="hidden" id="detail_carId" name="carId" value="">
+</form>
 <script>
     (function($) {
         'use strict';
@@ -241,17 +246,31 @@
     })(jQuery);
 </script>
 
+
 <script>
-    function toYMD(date) {
-        var temp = date.split("/");
-        return temp[2] + "-" + temp[1] + "-" + temp[0];
-    }
     $(".btn_search_car").click(function() {
         var start_date = $("#start_date").val();
         var end_date = $("#end_date").val();
-        $("#start_date").val(toYMD(start_date));
-        $("#end_date").val(toYMD(end_date));
-        $("#search_car").submit();
+        var province = $("#provine_id").val();
+        if (province) {
+            $("#search_car").submit();
+        } else {
+            alert("กรุณาเลือกจังหวัด");
+        }
 
+
+    });
+
+    $(".car-detail").click(function() {
+        var start_date = $(this).attr('data-start_date');
+        var end_date = $(this).attr('data-end_date');
+        var province = $(this).attr('data-provine_id');
+        var carId = $(this).attr('data-carId');
+        console.log(carId);
+        $("#detail_provine_id").val(province);
+        $("#detail_start_date").val(start_date);
+        $("#detail_end_date").val(end_date);
+        $("#detail_carId").val(carId);
+        $("#form_data_search").submit();
     });
 </script>

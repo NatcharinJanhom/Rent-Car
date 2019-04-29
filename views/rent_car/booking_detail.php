@@ -19,50 +19,94 @@
         width:100%;
         height:100%;
     }
+    .pointer {cursor: pointer;}
 </style>
+<script>
+function history_Back(num) {
+  window.history.go(num);
+}
+</script>
+<?php $detail = json_decode($this->booking_detail);?>
 <div class="container">
     <div class="card mb-4">
         <div class="card-body">
             <nav aria-label="breadcrumb" id="breadcrumb">
                 <ol class="breadcrumb breadcrumb-custom">
                     <li class="breadcrumb-item active">
-                        <a href="<?php echo URL ?>manage_booking/search_car">ผลการค้นหา</a>
+                        <span class="text-primary "  >ผลการค้นหา</span>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        <a href="<?php echo URL ?>manage_booking/detail_car">รายละเอียดรถ</a>
+                    <li class="breadcrumb-item active">
+                        <span class="text-primary "  >รายละเอียดรถ</span>
                     </li>
                     <li class="breadcrumb-item " aria-current="page">
-                        <a href="#breadcrumb">เสร็จสิ้น</a>
+                        <span class="text-primary">เสร็จสิ้น</span>
                     </li>
                 </ol>
             </nav>
-            <h3><span><i class="fa fa-check-circle"></i></span> การจองเสร็จสิ้น รหัสการจองของคุณคือ <span class="text-primary">#11032547 </span> <span class="badge badge-warning"><i class="fa fa-history"></i> รอการติดต่อกลับจากบริษัทรถเช่า</span></h3>
+            <h3><span><i class="fa fa-check-circle"></i></span> การจองเสร็จสิ้น <span class="badge badge-warning"><i class="fa fa-history"></i> รอการติดต่อกลับจากบริษัทรถเช่า</span></h3>
+            <h3>รหัสการจองของคุณคือ <span class="text-primary"><?php echo $detail->rentSearch?> </span> </h3>
             <div class="card mb-4">
                 <div class="card-body">
                     <p align="right">สถานะการจอง</p>
-                    <p align="right" class="text-warning" style="font-size:20px;">รอการยืนยัน</p>
+                    <p align="right" class="text-warning" style="font-size:20px;"><?php echo $detail->status?></p>
                     <hr>
                     <div class="row">
-                        <div class="col-md-4">
-                            <a href="#">
-                                <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
-                            </a>
-                        </div>
+                    <?php if ( $detail->car->typeCar == "รถเก๋ง") : ?>
+                                <div class=" col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ( $detail->car->typeCar == "รถกระบะ") : ?>
+                                <div class=" col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ( $detail->car->typeCar == "รถตู้") : ?>
+                                <div class=" col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ( $detail->car->typeCar == "รถจักรยานยนต์") : ?>
+                                <div class=" col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ( $detail->car->typeCar == "รถจักรยานยนต์") : ?>
+                                <div class=" col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ( $detail->car->typeCar == "รถทัวร์") : ?>
+                                <div class=" col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
+                                    </a>
+                                </div>
+
+                            <?php endif; ?>
                         <div class="col-md-3">
-                            <p>Nissan March 2018</p>
-                            <p><span><i class="fa fa-car"></i></span> รถเก๋ง <span><i class="fa fa-user"></i></span> 5 </p>
+                            <p><?php echo $detail->car->brand?></p>
+                            <p><span><i class="fa fa-car"></i></span> <?php echo $detail->car->typeCar?> <span><i class="fa fa-user"></i></span> <?php echo $detail->car->seatCount?> </p>
                         </div>
                         <div class="col-md-5">
+                            <?php date_default_timezone_set('Asia/Bangkok');  ?>
                             <p>สถานที่รับรถ-คืนรถ</p>
                             <div class="row">
                                 <div class="col-md-5">
                                     <p id="title-text"><span><i class="fa fa-calendar-alt"></i></span> รับรถ</p>
-                                    <p class="m-0">23 เม.ย. 2019 </p>
+                                    <p><?php echo $detail->car->provinceByAddressProvince->name?></p>
+                                    <p class="m-0"><?php echo  date("d/m/Y",substr($detail->startDate,0,-3));?> </p>
                                 </div>
                                 <span><i class="fa fa-arrow-right"></i></span>
                                 <div class="col-md-5 ml-5">
                                     <p id="title-text"><span><i class="fa fa-calendar-alt"></i></span> คืนรถ</p>
-                                    <p class="m-0">25 เม.ย. 2019</p>
+                                    <p><?php echo $detail->car->provinceByAddressProvince->name?></p>
+                                    <p class="m-0"><?php echo  date("d/m/Y",substr($detail->endDate,0,-3));?></p>
                                 </div>
                             </div>
                         </div>

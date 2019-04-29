@@ -41,13 +41,13 @@
       <div class="card ">
         <div class="card-body">
           <h4 class="card-title">เช็คราคาและรถว่าง</h4>
-          <form id="search_car"class="forms-sample" action="<?php echo URL ?>manage_booking/search_car">
+          <form id="search_car" class="forms-sample" action="<?php echo URL ?>manage_booking/search_car">
             <div class="form-group">
-              <label for="exampleInputName1">จังหวัด</label>
-              <select class="form-control" id="exampleInputName1" name="provine_id">
+              <label for="provine_id">จังหวัด</label>
+              <select class="form-control" id="provine_id" name="provine_id">
                 <option value=""> เลือกจังหวัด </option>
                 <?php if ($province->status == "200") :
-                  foreach ($province->result as $key => $value) { 
+                  foreach ($province->result as $key => $value) {
                     echo "<option value='$value->provinceId'> $value->name </option>";
                   }
                   ?>
@@ -55,14 +55,6 @@
                 <?php endif; ?>
               </select>
             </div>
-            <!-- <div class="form-group">
-              <label for="exampleInputEmail3"> สถานที่รับรถ </label>
-              <select class="form-control" id="exampleInputName1">
-                <option> เลือกสถานที่รับรถ </option>
-                <option> สนามบินดอนเมือง </option>
-                <option> สนามบินภูเก็ต </option>
-              </select>
-            </div> -->
             <div class="form-group">
               <label for="exampleInputPassword4"> วันที่รับรถ </label>
               <div id="pick-up" class="input-group date datepicker datepicker-popup">
@@ -82,7 +74,7 @@
               </div>
             </div>
 
-            <center><button type="submit" class="btn btn-success btn_search_car"> ค้นหารถเช่า <i class="pad-left-5 fa fa-check"></i></button></center>
+            <center><button type="button" class="btn btn-success btn_search_car"> ค้นหารถเช่า <i class="pad-left-5 fa fa-check"></i></button></center>
           </form>
         </div>
       </div>
@@ -306,19 +298,20 @@
   })(jQuery);
 </script>
 
-<!-- <script>
-  function toYMD(date)
-  {
-    var temp = date.split("/");
-    return temp[2]+"-"+ temp[1]+"-"+ temp[0];
-  }
-  $(".btn_search_car").click(function(){
-    var start_date=$("#start_date").val();
-    var end_date=$("#end_date").val();
+<script>
+  $(".btn_search_car").click(function() {
+    var start_date = $("#start_date").val();
+    var end_date = $("#end_date").val();
+    var province = $("#provine_id").val();
+    if(province)
+    {
+      $("#search_car").submit();
+    }
+    else
+    {
+      alert("กรุณาเลือกจังหวัด");
+    }
     
-    $("#start_date").val(toYMD(start_date));
-    $("#end_date").val(toYMD(end_date));
-    $("#search_car").submit();
 
   });
-</script> -->
+</script>
