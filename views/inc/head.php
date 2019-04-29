@@ -6,16 +6,33 @@
   <title>Rent-Car</title>
 
   <!-- Bootstrap core CSS -->
-<link href="<?php echo URL ; ?>css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="<?php echo URL ; ?>css/datepicker.css">
-<script type="text/javascript" src="<?php echo URL ; ?>js/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo URL ; ?>js/datepicker.js"></script>
+<link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo URL; ?>css/datepicker.css">
+<script type="text/javascript" src="<?php echo URL; ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>js/datepicker.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <style>
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+}
   @font-face {
     font-family: "Sukhumvit";
-    src: url(<?php echo URL."css/font/sukhumvittadmai_med-webfont.woff2"; ?>) format("woff2");
+    src: url(<?php echo URL . "css/font/sukhumvittadmai_med-webfont.woff2"; ?>) format("woff2");
     font-weight: normal;
     font-style: normal;
   }
@@ -39,5 +56,13 @@
 }
 a ,a:hover{
   text-decoration: none;
+}
+footer{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
 }
   </style>
