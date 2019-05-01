@@ -1,5 +1,3 @@
-<script src="<?php echo URL ;?>js/jquery.min.js"></script>
-<script src="<?php echo URL ;?>js/bootstrap.bundle.min.js"></script>
 <script>
  var current = location.pathname.split("/").slice(2)[0].replace(/^\/|\/$/g, '');
  $('.navbar-nav li a').each(function() {

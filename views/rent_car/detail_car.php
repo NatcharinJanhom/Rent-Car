@@ -55,7 +55,6 @@
 </style>
 <?php $car = json_decode($this->car);
 $data_search = $this->data_search;
-print_r($car);
 ?>
 <div class="container">
     <div class="card mt-4 mb-4">
@@ -181,7 +180,15 @@ print_r($car);
                     </div>
 
                     <div align="right">
-                        <button type="button" class="btn btn-primary booking">เลือกรถคันนี้</button>
+                        <?php
+                        Session::init();
+                        $user = Session::get("user");
+                        ?>
+                        <?php if ($user) : ?>
+                            <button type="button" class="btn btn-primary book_car">เลือกรถคันนี้</button>
+                        <?php else : ?>
+                            <button type="button" class="btn btn-primary booking">เลือกรถคันนี้</button>
+                        <?php endif; ?>
                     </div>
 
                 </div>
@@ -202,7 +209,7 @@ print_r($car);
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form method="POST" id="rent-car" action="<?php echo URL ?>manage_booking/booking">
+                <form method="POST" id="rent-car" action="<?php echo URL ?>rent/booking">
                     <div class="form-group">
                         <label for="provine_id">ที่อยู่</label>
                         <input type="text" class="form-control" name="address">
@@ -215,10 +222,10 @@ print_r($car);
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <input type="hidden" id="modal-withDriver"name="withDriver">
-                <input type="hidden" name="carId" value="<?php echo $car->result->carId ;?>">
-                <input type="hidden" name="startDate"  value="<?php echo $data_search['start_date']; ?>">
-                <input type="hidden" name="endDate"  value="<?php echo $data_search['end_date'];?>">
+                <input type="hidden" id="modal-withDriver" name="withDriver">
+                <input type="hidden" name="carId" value="<?php echo $car->result->carId; ?>">
+                <input type="hidden" name="startDate" value="<?php echo $data_search['start_date']; ?>">
+                <input type="hidden" name="endDate" value="<?php echo $data_search['end_date']; ?>">
                 <button type="button" class="btn btn-primary book_car">จอง</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
             </div>
@@ -238,7 +245,7 @@ print_r($car);
     });
 
     $(".book_car").click(function() {
-        var check =$("#withDriver").prop("checked");
+        var check = $("#withDriver").prop("checked");
         $("#modal-withDriver").val(check);
         $("#myModal").modal('hide');
         $("#rent-car").submit();

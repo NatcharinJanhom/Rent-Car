@@ -37,7 +37,7 @@
                       <input type="password" name="password" class="form-control" placeholder="*********">
                       <div class="input-group-append">
                         <span class="input-group-text">
-                          <i class="mdi mdi-key"></i>
+                          <i class="fa fa-key"></i>
                         </span>
                       </div>
                     </div>
