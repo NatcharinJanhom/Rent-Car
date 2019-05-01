@@ -50,7 +50,7 @@
     <?php $data_search = $this->data_search; ?>
     <?php $province = json_decode($province); ?>
     <?php $carList = json_decode($this->carList); ?>
-    <form id="search_car" class="row pad-10" action="<?php echo URL ?>manage_booking/search_car">
+    <form id="search_car" class="row pad-10" action="<?php echo URL ?>rent/search_car">
         <div class="col-1 col-md-1 col-lg-1">
         </div>
         <div class="col-3 col-md-3 col-lg-3">
@@ -224,7 +224,7 @@
         </div>
     </div>
 </div>
-<form id="form_data_search" method="GET" action="<?php echo URL ?>manage_booking/detail_car">
+<form id="form_data_search" method="GET" action="<?php echo URL ?>rent/detail_car">
     <input type="hidden" id="detail_provine_id" name="provine_id" value="">
     <input type="hidden" id="detail_start_date" name="start_date" value="">
     <input type="hidden" id="detail_end_date" name="end_date" value="">

@@ -41,7 +41,7 @@
       <div class="card ">
         <div class="card-body">
           <h4 class="card-title">เช็คราคาและรถว่าง</h4>
-          <form id="search_car" class="forms-sample" action="<?php echo URL ?>manage_booking/search_car">
+          <form id="search_car" class="forms-sample" action="<?php echo URL ?>rent/search_car">
             <div class="form-group">
               <label for="provine_id">จังหวัด</label>
               <select class="form-control" id="provine_id" name="provine_id">

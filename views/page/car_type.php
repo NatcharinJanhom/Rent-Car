@@ -53,8 +53,7 @@
                                     <p>Nissan March 2018</p>
                                     <p><span><i class="fa fa-car"></i></span> รถเก๋ง <span><i class="fa fa-user"></i></span> 5 </p>
                                     <hr>
-                                    
-                                    <a href="<?php echo URL?>manage_booking/detail_car" class="btn btn-primary">เลือกรถประเภทนี้</a>
+                                    <h4><span>฿ </span>600 / วัน</h4>
                                 </div>
                             </div>
                             <hr>
@@ -68,8 +67,8 @@
                                     <p>Toyota Hilux Revo 2017</p>
                                     <p><span><i class="fa fa-car"></i></span> รถกะบะ <span><i class="fa fa-user"></i></span> 5 </p>
                                     <hr>
-                                    
-                                    <a href="#" class="btn btn-primary"> เลือกรถประเภทนี้</a>
+                                    <h4><span>฿ </span>1500 / วัน</h4>
+                                     
                                 </div>
                             </div>
                             <hr>
@@ -83,26 +82,12 @@
                                     <p>Toyota Alphard 2018</p>
                                     <p><span><i class="fa fa-car"></i></span> รถตู้ <span><i class="fa fa-user"></i></span> 8 </p>
                                     <hr>
-                                    
-                                    <a href="#" class="btn btn-primary"> เลือกรถประเภทนี้</a>
+                                    <h4><span>฿ </span>500 / วัน</h4>
+                                     
                                 </div>
                             </div>
                             <hr>
-                            <div class="row mb-2">
-                                <div class="col-lg-4 col-md-4">
-                                    <a href="#">
-                                        <img class="img-fluid" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-lg-8 col-md-8">
-                                    <p>honda pcx150</p>
-                                    <p><span><i class="fa fa-car"></i></span> รถจักรยานยนต์ <span><i class="fa fa-user"></i></span> 2 </p>
-                                    <hr>
-                                    <h4><span>฿ </span>400 / วัน</h4>
-                                    <a href="#" class="btn btn-primary"> เลือกรถประเภทนี้</a>
-                                </div>
-                               
-                            </div>
+                         
                             <div class="row mb-2">
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
@@ -110,11 +95,11 @@
                                     </a>
                                 </div>
                                 <div class="col-lg-8 col-md-8">
-                                    <p>รถบัสปรับอากาศ</p>
-                                    <p><span><i class="fa fa-car"></i></span> รถบัส <span><i class="fa fa-user"></i></span> 40 <span><i class="fa fa-check-circle"></i></span> คนขับ </p>
+                                    <p>รถทัวร์</p>
+                                    <p><span><i class="fa fa-car"></i></span> รถทัวร์ <span><i class="fa fa-user"></i></span> 40 <span><i class="fa fa-check-circle"></i></span> คนขับ </p>
                                     <hr>
                                     <h4><span>฿ </span>4000 / วัน</h4>
-                                    <a href="#" class="btn btn-primary"> เลือกรถประเภทนี้</a>
+                                     
                                 </div>
                                
                             </div>
