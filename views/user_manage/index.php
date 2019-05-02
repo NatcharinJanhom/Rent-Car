@@ -3,6 +3,14 @@
         margin-top: 1.5rem !important;
         margin-bottom: 1.5rem !important;
     }
+
+    .text-wrap {
+        white-space: normal;
+    }
+
+    .width-200 {
+        width: 400px;
+    }
 </style>
 <?php $customer = json_decode($this->customer) ?>
 <?php $admin = json_decode($this->admin) ?>
@@ -35,7 +43,7 @@
                     <?php if (sizeof($customer->result) <= 0) : ?>
                         <p>ไม่พบผู้ใช้ประเภทนี้ในระบบ</p>
                     <?php else : ?>
-                        <table id="customer-all" class="table table-striped table-bordered dataTable no-footer" style="width:100%">
+                        <table id="customer-all" class="table table-striped table-bordered table-hover dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <th>ลำดับ</th>
                                 <th>ชื่อ</th>
@@ -53,7 +61,11 @@
                                         <td><?php echo $value->lname ?></td>
                                         <td><?php echo $value->address ?></td>
                                         <td><?php echo $value->phoneNumber ?></td>
-                                        <td></td>
+                                        <td>
+                                            <div class="text-wrap width-200">
+                                                <?php echo $value->rememberToken ?>
+                                            </div>
+                                        </td>
                                         <td>
                                             <center><button type="button" class="btn btn-warning mr-2">แก้ไข</button><button type="button" class="btn btn-danger">ลบ</button></center>
                                         </td>
@@ -67,7 +79,7 @@
                     <?php if (sizeof($admin->result) <= 0) : ?>
                         <p>ไม่พบผู้ใช้ประเภทนี้ในระบบ</p>
                     <?php else : ?>
-                    <table id="admin-all" class="table table-striped table-bordered dataTable no-footer" style="width:100%">
+                        <table id="admin-all" class="table table-striped table-bordered table-hover dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <th>ลำดับ</th>
                                 <th>ชื่อ</th>
@@ -85,7 +97,11 @@
                                         <td><?php echo $value->lname ?></td>
                                         <td><?php echo $value->address ?></td>
                                         <td><?php echo $value->phoneNumber ?></td>
-                                        <td></td>
+                                        <td>
+                                            <div class="text-wrap width-200">
+                                                <?php echo $value->rememberToken ?>
+                                            </div>
+                                        </td>
                                         <td>
                                             <center><button type="button" class="btn btn-warning mr-2">แก้ไข</button><button type="button" class="btn btn-danger">ลบ</button></center>
                                         </td>
@@ -99,14 +115,13 @@
                     <?php if (sizeof($company->result) <= 0) : ?>
                         <p>ไม่พบผู้ใช้ประเภทนี้ในระบบ</p>
                     <?php else : ?>
-                    <table id="company-all" class="table table-striped table-bordered dataTable no-footer" style="width:100%">
+                        <table id="company-all" class="table table-striped table-bordered table-hover dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <th>ลำดับ</th>
                                 <th>ชื่อ</th>
                                 <th>นามสกุล</th>
                                 <th>ที่อยู่</th>
                                 <th>เบอร์โทรศัพท์</th>
-                                <th>บริษัท</th>
                                 <th>token</th>
                                 <th></th>
                             </thead>
@@ -118,8 +133,11 @@
                                         <td><?php echo $value->lname ?></td>
                                         <td><?php echo $value->address ?></td>
                                         <td><?php echo $value->phoneNumber ?></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>
+                                            <div class="text-wrap width-200">
+                                                <?php echo $value->rememberToken ?>
+                                            </div>
+                                        </td>
                                         <td>
                                             <center><button type="button" class="btn btn-warning mr-2">แก้ไข</button><button type="button" class="btn btn-danger">ลบ</button></center>
                                         </td>
@@ -147,181 +165,90 @@
             </div>
 
             <!-- Modal body -->
+            <div class="modal-body">
+                <form action='<?php echo URL ?>user_manage/create' method="post" id="create-user-company">
 
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#admin">เพิ่ม ADMIN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#company">เพิ่ม COMPANY</a>
-                </li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div id="company" class="container tab-pane"><br>
-                    <div class="modal-body">
-                        <form action='<?php echo URL ?>user_manage/create' method="post" id="create-user-company">
+                    <div class="form-group row">
+                        <label for="add-username-company" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
+                            <input id="add-username-company" name="username" type="username" class="form-control" placeholder="ชื่อผู้ใช้" required>
+                        </div>
 
-                            <div class="form-group row">
-                                <label for="add-username-company" class="col-sm-3 col-form-label">Username</label>
-                                <div class="col-sm-9">
-                                    <input id="add-username-company" name="username" type="username" class="form-control" placeholder="ชื่อผู้ใช้" required>
-                                </div>
-
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-password-company" class="col-sm-3 col-form-label">Password</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group">
-                                        <input id="add-password-company" name="password" type="password" class="form-control" placeholder="รหัสผ่าน" required>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-key"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-cf_password-company" class="col-sm-3 col-form-label">Confirm Password</label>
-                                <div class="col-sm-9" id="alert-messenge-company">
-                                    <div class="input-group">
-                                        <input id="add-cf_password-company" name="cf_password" type="password" class="form-control" placeholder="ยืนยันรหัสผ่าน" required>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-key"></i>
-                                            </span>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="add-password-company" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <input id="add-password-company" name="password" type="password" class="form-control" placeholder="รหัสผ่าน" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-key"></i>
+                                    </span>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                        </div>
 
-                                <label for="add-name-company" class="col-sm-3 col-form-label">ชื่อ</label>
-                                <div class="col-sm-9">
-                                    <input id="add-name-company" name="name" type="text" class="form-control" placeholder="ชื่อ" required>
+                    </div>
+                    <div class="form-group row">
+                        <label for="add-cf_password-company" class="col-sm-3 col-form-label">Confirm Password</label>
+                        <div class="col-sm-9" id="alert-messenge-company">
+                            <div class="input-group">
+                                <input id="add-cf_password-company" name="cf_password" type="password" class="form-control" placeholder="ยืนยันรหัสผ่าน" required>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-key"></i>
+                                    </span>
                                 </div>
-
-
                             </div>
-                            <div class="form-group row">
-                                <label for="add-surname-company" class="col-sm-3 col-form-label">นามสกุล</label>
-                                <div class="col-sm-9">
-                                    <input id="add-surname-company" name="surname" type="text" class="form-control" placeholder="นามสกุล" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-address-company" class="col-sm-3 col-form-label">ที่อยู่</label>
-                                <div class="col-sm-9">
-                                    <input id="add-address-company" name="address" type="text" class="form-control" placeholder="ที่อยู่" required>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
 
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-phoneNumber-company" class="col-sm-3 col-form-label">เบอร์โทรศัพท์</label>
-                                <div class="col-sm-9">
-                                    <input id="add-phoneNumber-company" name="phoneNumber" type="text" class="form-control" placeholder="เบอร์โทรศัพท์" required>
-                                </div>
-
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-companyName-company" class="col-sm-3 col-form-label">บริษัท</label>
-                                <div class="col-sm-9">
-                                    <input id="add-companyName-company" name="companyName" type="text" class="form-control" placeholder="บริษัท" required>
-                                </div>
-
-                            </div>
+                        <label for="add-name-company" class="col-sm-3 col-form-label">ชื่อ</label>
+                        <div class="col-sm-9">
+                            <input id="add-name-company" name="name" type="text" class="form-control" placeholder="ชื่อ" required>
+                        </div>
 
 
                     </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <input type="hidden" name="typeUser" value="COMPANY">
-                        <button type="button" class="btn btn-success create-company">ยืนยัน</button>
-                        <button type="button" class="btn btn-light" data-dismiss="modal">ยกเลิก</button>
+                    <div class="form-group row">
+                        <label for="add-surname-company" class="col-sm-3 col-form-label">นามสกุล</label>
+                        <div class="col-sm-9">
+                            <input id="add-surname-company" name="surname" type="text" class="form-control" placeholder="นามสกุล" required>
+                        </div>
                     </div>
-                    </form>
-                </div>
+                    <div class="form-group row">
+                        <label for="add-address-company" class="col-sm-3 col-form-label">ที่อยู่</label>
+                        <div class="col-sm-9">
+                            <input id="add-address-company" name="address" type="text" class="form-control" placeholder="ที่อยู่" required>
+                        </div>
 
-                <div id="admin" class="container tab-pane active"><br>
-                    <div class="modal-body">
-                        <form action='<?php echo URL ?>user_manage/create' method="post" id="create-user-admin">
-
-                            <div class="form-group row">
-                                <label for="add-username" class="col-sm-3 col-form-label">Username</label>
-                                <div class="col-sm-9">
-                                    <input id="add-username" name="username" type="username" class="form-control" placeholder="ชื่อผู้ใช้" required>
-                                </div>
-
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-password" class="col-sm-3 col-form-label">Password</label>
-                                <div class="col-sm-9">
-                                    <div class="input-group">
-                                        <input id="add-password" name="password" type="password" class="form-control" placeholder="รหัสผ่าน" required>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-key"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-cf_password" class="col-sm-3 col-form-label">Confirm Password</label>
-                                <div class="col-sm-9" id="alert-messenge">
-                                    <div class="input-group">
-                                        <input id="add-cf_password" name="cf_password" type="password" class="form-control" placeholder="ยืนยันรหัสผ่าน" required>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fa fa-key"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-
-                                <label for="add-name" class="col-sm-3 col-form-label">ชื่อ</label>
-                                <div class="col-sm-9">
-                                    <input id="add-name" name="name" type="text" class="form-control" placeholder="ชื่อ" required>
-                                </div>
-
-
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-surname" class="col-sm-3 col-form-label">นามสกุล</label>
-                                <div class="col-sm-9">
-                                    <input id="add-surname" name="surname" type="text" class="form-control" placeholder="นามสกุล" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-address" class="col-sm-3 col-form-label">ที่อยู่</label>
-                                <div class="col-sm-9">
-                                    <input id="add-address" name="address" type="text" class="form-control" placeholder="ที่อยู่" required>
-                                </div>
-
-                            </div>
-                            <div class="form-group row">
-                                <label for="add-phoneNumber" class="col-sm-3 col-form-label">เบอร์โทรศัพท์</label>
-                                <div class="col-sm-9">
-                                    <input id="add-phoneNumber" name="phoneNumber" type="text" class="form-control" placeholder="เบอร์โทรศัพท์" required>
-                                </div>
-
-                            </div>
                     </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <input type="hidden" name="typeUser" value="ADMIN">
-                        <button type="button" class="btn btn-success create">ยืนยัน</button>
-                        <button type="button" class="btn btn-light" data-dismiss="modal">ยกเลิก</button>
+                    <div class="form-group row">
+                        <label for="add-phoneNumber-company" class="col-sm-3 col-form-label">เบอร์โทรศัพท์</label>
+                        <div class="col-sm-9">
+                            <input id="add-phoneNumber-company" name="phoneNumber" type="text" class="form-control" placeholder="เบอร์โทรศัพท์" required>
+                        </div>
+
                     </div>
-                    </form>
-                </div>
+                    <div class="form-group row">
+                        <label for="add-typeUser-company" class="col-sm-3 col-form-label">ประเภทผู้ใช้</label>
+                        <div class="col-sm-9">
+                            <select id="add-typeUser-company" name="typeUser" class="form-control" required>
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="COMPANY">COMPANY</option>
+                            </select>
+                        </div>
+                    </div>
+
 
             </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success create-company">ยืนยัน</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">ยกเลิก</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -329,33 +256,6 @@
     $(".btn-create").click(function() {
         $("#create-user").modal("show")
     });
-
-
-    $(" .create").click(function() {
-        var username = $("#add-username").val();
-
-        var password = $("#add-password").val();
-        var cf_password = $("#add-cf_password").val();
-        var name = $("#add-name").val();
-        var surname = $("#add-surname").val();
-        var address = $("#add-address").val();
-        var phoneNumber = $("#add-phoneNumber").val();
-        var check = false;
-        if (password != cf_password) {
-            $(".alert-pwd-2").remove();
-            $("#alert-messenge").append("<span class='text-danger alert-pwd-2'> รหัสผ่านไม่ตรงกัน </span>");
-            check = false;
-        } else if (password == cf_password) {
-            $(".alert-pwd-2").remove();
-            check = true;
-        }
-        if (check) {
-            $("#create-user-admin").submit();
-            $("#create-user").modal("hide")
-        }
-
-    });
-
 
     $(" .create-company").click(function() {
         var username = $("#add-username-company").val();
@@ -386,7 +286,7 @@
         responsive: true,
         "ordering": true,
         "columnDefs": [{
-                "width": "10%",
+                "width": "5%",
                 "targets": 0
             },
             {
@@ -398,16 +298,20 @@
                 "targets": 2
             },
             {
-                "width": "20%",
+                "width": "15%",
                 "targets": 3
             },
             {
-                "width": "20%",
+                "width": "15%",
                 "targets": 4
             },
             {
-                "width": "20%",
+                "width": "15%",
                 "targets": 5
+            },
+            {
+                "width": "20%",
+                "targets": 6
             }
         ],
     });
@@ -453,11 +357,11 @@
                 "targets": 0
             },
             {
-                "width": "10%",
+                "width": "15%",
                 "targets": 1
             },
             {
-                "width": "10%",
+                "width": "15%",
                 "targets": 2
             },
             {
@@ -465,7 +369,7 @@
                 "targets": 3
             },
             {
-                "width": "10%",
+                "width": "15%",
                 "targets": 4
             },
             {
@@ -473,12 +377,8 @@
                 "targets": 5
             },
             {
-                "width": "15%",
-                "targets": 6
-            },
-            {
                 "width": "20%",
-                "targets": 7
+                "targets": 6
             }
         ],
     });
