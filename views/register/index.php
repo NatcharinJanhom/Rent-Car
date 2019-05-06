@@ -91,6 +91,7 @@
     $("#form_register").submit(function (e) {
       e.preventDefault();
       var actionurl = e.currentTarget.action;
+      console.log(actionurl);
       $.ajax({
         url: actionurl,
         method: 'post',

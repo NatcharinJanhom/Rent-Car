@@ -10,7 +10,7 @@
             <center>
                 <form method="post" action="<?php echo URL ?>manage_booking/search">
                 <div class="form-group">
-                    <label for="exampleInputName1">รหัสจอง</label>
+                    <label for="exampleInputName1">รหัสการเช่า</label>
                     <input type="text" name="rent_search" class="form-control">
                 </div>
                 <div class="row">
