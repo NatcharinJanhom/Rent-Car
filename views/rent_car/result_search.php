@@ -46,10 +46,10 @@
 </style>
 
 <header>
-    <?php $province = $this->province; ?>
-    <?php $data_search = $this->data_search; ?>
-    <?php $province = json_decode($province); ?>
-    <?php $carList = json_decode($this->carList); ?>
+    <?php $province = $this->province;?>
+    <?php $data_search = $this->data_search;?>
+    <?php $province = json_decode($province);?>
+    <?php $carList = json_decode($this->carList);?>
     <form id="search_car" class="row pad-10" action="<?php echo URL ?>rent/search_car">
         <div class="col-1 col-md-1 col-lg-1">
         </div>
@@ -57,17 +57,17 @@
             <label for="provine_id">จังหวัด</label>
             <select class="form-control" id="provine_id" name="provine_id">
                 <option value=""> เลือกจังหวัด </option>
-                <?php if ($province->status == "200") :
-                    foreach ($province->result as $key => $value) {
-                        if ($data_search['provine_id'] != $value->provinceId) {
-                            echo "<option value='$value->provinceId'> " . $value->name . " </option>";
-                        } else {
-                            echo "<option value='$value->provinceId' selected> $value->name </option>";
-                        }
-                    }
-                    ?>
+                <?php if ($province->status == "200"):
+    foreach ($province->result as $key => $value) {
+        if ($data_search['provine_id'] != $value->provinceId) {
+            echo "<option value='$value->provinceId'> " . $value->name . " </option>";
+        } else {
+            echo "<option value='$value->provinceId' selected> $value->name </option>";
+        }
+    }
+    ?>
 
-                <?php endif; ?>
+																											                <?php endif;?>
             </select>
         </div>
 
@@ -125,50 +125,74 @@
                         </div>
                     </div>
 
-                    <?php foreach ($carList->result as $key => $value) : ?>
+                    <?php foreach ($carList->result as $key => $value): ?>
                         <?php
-                        echo "<hr>";
-                        ?>
+echo "<hr>";
+?>
 
                         <div class="row mb-2">
-                            <?php if ($value->typeCar == "รถเก๋ง") : ?>
+                            <?php if ($value->typeCar == "รถเก๋ง" && $value->brand == "Honda"): ?>
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
-                                        <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_civic.png" alt="">
                                     </a>
                                 </div>
-                            <?php elseif ($value->typeCar == "รถกระบะ") : ?>
+                            <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Toyota"): ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Mercedes-Benz"): ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/benz.png" alt="">
+                                    </a>
+                                </div>
+                             <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Hyundai"): ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai.jpg" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ($value->typeCar == "รถกระบะ"): ?>
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
                                         <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
                                     </a>
                                 </div>
-                            <?php elseif ($value->typeCar == "รถตู้") : ?>
+                            <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Toyota"): ?>
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
                                         <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
                                     </a>
                                 </div>
-                            <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                            <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Hyundai"): ?>
+                                <div class="col-lg-4 col-md-4">
+                                    <a href="#">
+                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai_H1.jpg" alt="">
+                                    </a>
+                                </div>
+                            <?php elseif ($value->typeCar == "รถจักรยานยนต์"): ?>
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
                                         <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
                                     </a>
                                 </div>
-                            <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                            <?php elseif ($value->typeCar == "รถจักรยานยนต์"): ?>
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
                                         <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
                                     </a>
                                 </div>
-                            <?php elseif ($value->typeCar == "รถทัวร์") : ?>
+                            <?php elseif ($value->typeCar == "รถทัวร์"): ?>
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">
                                         <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
                                     </a>
                                 </div>
 
-                            <?php endif; ?>
+                            <?php endif;?>
                             <div class="col-lg-8 col-md-8">
                                 <p><?php echo $value->brand; ?> </p>
                                 <p><span><i class="fa fa-car"></i></span> <?php echo $value->typeCar ?> <span><i class="fa fa-user"></i></span> <?php echo $value->seatCount ?> </p>
@@ -178,7 +202,7 @@
                             </div>
                         </div>
 
-                    <?php endforeach; ?>
+                    <?php endforeach;?>
                 </div>
             </div>
         </div>
