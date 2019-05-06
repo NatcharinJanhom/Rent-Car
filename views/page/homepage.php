@@ -26,10 +26,8 @@
   }
 
   .img-fluid-car {
-    max-width: 400px;
-    max-height: 200px;
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 200px;
   }
 </style>
 <header>
@@ -85,22 +83,65 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="8"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-          <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('<?php echo URL ?>image/original-1416034605429.jpg')">
+
+          <div class="carousel-item active" style="background-image: url('<?php echo URL ?>image/honda-civic-2019MY-A01.jpg')">
             <div class="carousel-caption d-none d-md-block">
 
             </div>
           </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg')">
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/Hyundai.jpg')">
             <div class="carousel-caption d-none d-md-block">
 
             </div>
           </div>
-          <!-- Slide Three - Set the background image for this slide in the line below -->
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/benz.png')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
           <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/super-white-revo.png')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/Hyundai_H1.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/original-1416034605429.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/Honda_PCX150_L_1.jpg')">
             <div class="carousel-caption d-none d-md-block">
 
             </div>
@@ -189,7 +230,7 @@
                     </a>
                   <?php endif; ?>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer text-right">
                   <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
                 </div>
               </div>
@@ -205,53 +246,55 @@
 
         <div class="row mt-4">
           <?php foreach ($bangkok->result as $key => $value) : ?>
-            <div class="col-lg-4 mb-4">
-              <div class="card">
+            <?php if ($key <= 2) : ?>
+              <div class="col-lg-4 mb-4">
+                <div class="card">
 
-                <div class="card-body">
-                  <?php if ($value->typeCar == "รถเก๋ง" && $value->brand == "Honda") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_civic.png" alt="">
-                    </a>
-                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Toyota") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png" alt="">
-                    </a>
-                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Mercedes-Benz") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/benz.png" alt="">
-                    </a>
-                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Hyundai") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai.jpg" alt="">
-                    </a>
-                  <?php elseif ($value->typeCar == "รถกระบะ") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
-                    </a>
-                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Toyota") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
-                    </a>
-                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Hyundai") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai_H1.jpg" alt="">
-                    </a>
-                  <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
-                    </a>
-                  <?php elseif ($value->typeCar == "รถทัวร์") : ?>
-                    <a href="#">
-                      <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
-                    </a>
-                  <?php endif; ?>
-                </div>
-                <div class="card-footer">
-                  <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                  <div class="card-body">
+                    <?php if ($value->typeCar == "รถเก๋ง" && $value->brand == "Honda") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_civic.png" alt="">
+                      </a>
+                    <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Toyota") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png" alt="">
+                      </a>
+                    <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Mercedes-Benz") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/benz.png" alt="">
+                      </a>
+                    <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Hyundai") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai.jpg" alt="">
+                      </a>
+                    <?php elseif ($value->typeCar == "รถกระบะ") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
+                      </a>
+                    <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Toyota") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
+                      </a>
+                    <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Hyundai") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai_H1.jpg" alt="">
+                      </a>
+                    <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                      </a>
+                    <?php elseif ($value->typeCar == "รถทัวร์") : ?>
+                      <a href="#">
+                        <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
+                      </a>
+                    <?php endif; ?>
+                  </div>
+                  <div class="card-footer text-right">
+                    <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                  </div>
                 </div>
               </div>
-            </div>
+            <?php endif; ?>
           <?php endforeach; ?>
         </div>
       <?php endif; ?>
@@ -303,7 +346,7 @@
                     </a>
                   <?php endif; ?>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer text-right">
                   <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
                 </div>
               </div>
@@ -361,7 +404,7 @@
                     </a>
                   <?php endif; ?>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer text-right">
                   <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
                 </div>
               </div>

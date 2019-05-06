@@ -12,9 +12,9 @@
         width: 400px;
     }
 </style>
-<?php $customer = json_decode($this->customer) ?>
-<?php $admin = json_decode($this->admin) ?>
-<?php $company = json_decode($this->company); ?>
+<?php $customer = json_decode($this->customer)?>
+<?php $admin = json_decode($this->admin)?>
+<?php $company = json_decode($this->company);?>
 <div class="container">
     <div class="card mb-4">
         <div class="card-body">
@@ -40,9 +40,9 @@
             </ul>
             <div class="tab-content">
                 <div id="show-customer" class="container tab-pane active"><br>
-                    <?php if (sizeof($customer->result) <= 0) : ?>
+                    <?php if (sizeof($customer->result) <= 0): ?>
                         <p>ไม่พบผู้ใช้ประเภทนี้ในระบบ</p>
-                    <?php else : ?>
+                    <?php else: ?>
                         <table id="customer-all" class="table table-striped table-bordered table-hover dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <th>ลำดับ</th>
@@ -54,7 +54,7 @@
                                 <th></th>
                             </thead>
                             <tbody>
-                                <?php foreach ($customer->result as $key => $value) : ?>
+                                <?php foreach ($customer->result as $key => $value): ?>
                                     <tr>
                                         <td><?php echo ($key + 1) ?></td>
                                         <td><?php echo $value->fname ?></td>
@@ -67,18 +67,18 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <center><button type="button" class="btn btn-warning mr-2">แก้ไข</button><button type="button" class="btn btn-danger">ลบ</button></center>
+                                            <center><button type="button" class="btn btn-danger btn-delete-user" userId="<?php echo $value->userId ?>">ลบ</button></center>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </tbody>
                         </table>
-                    <?php endif; ?>
+                    <?php endif;?>
                 </div>
                 <div id="show-admin" class="container tab-pane"><br>
-                    <?php if (sizeof($admin->result) <= 0) : ?>
+                    <?php if (sizeof($admin->result) <= 0): ?>
                         <p>ไม่พบผู้ใช้ประเภทนี้ในระบบ</p>
-                    <?php else : ?>
+                    <?php else: ?>
                         <table id="admin-all" class="table table-striped table-bordered table-hover dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <th>ลำดับ</th>
@@ -90,7 +90,7 @@
                                 <th></th>
                             </thead>
                             <tbody>
-                                <?php foreach ($admin->result as $key => $value) : ?>
+                                <?php foreach ($admin->result as $key => $value): ?>
                                     <tr>
                                         <td><?php echo ($key + 1) ?></td>
                                         <td><?php echo $value->fname ?></td>
@@ -103,18 +103,18 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <center><button type="button" class="btn btn-warning mr-2">แก้ไข</button><button type="button" class="btn btn-danger">ลบ</button></center>
+                                            <center><button type="button" class="btn btn-danger btn-delete-user" userId="<?php echo $value->userId ?>">ลบ</button></center>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </tbody>
                         </table>
-                    <?php endif; ?>
+                    <?php endif;?>
                 </div>
                 <div id="show-company" class="container tab-pane"><br>
-                    <?php if (sizeof($company->result) <= 0) : ?>
+                    <?php if (sizeof($company->result) <= 0): ?>
                         <p>ไม่พบผู้ใช้ประเภทนี้ในระบบ</p>
-                    <?php else : ?>
+                    <?php else: ?>
                         <table id="company-all" class="table table-striped table-bordered table-hover dt-responsive nowrap" style="width:100%">
                             <thead>
                                 <th>ลำดับ</th>
@@ -126,7 +126,7 @@
                                 <th></th>
                             </thead>
                             <tbody>
-                                <?php foreach ($company->result as $key => $value) : ?>
+                                <?php foreach ($company->result as $key => $value): ?>
                                     <tr>
                                         <td><?php echo ($key + 1) ?></td>
                                         <td><?php echo $value->fname ?></td>
@@ -139,13 +139,13 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <center><button type="button" class="btn btn-warning mr-2">แก้ไข</button><button type="button" class="btn btn-danger">ลบ</button></center>
+                                            <center><button type="button" class="btn btn-danger btn-delete-user" userId="<?php echo $value->userId ?>">ลบ</button></center>
                                         </td>
                                     </tr>
-                                <?php endforeach; ?>
+                                <?php endforeach;?>
                             </tbody>
                         </table>
-                    <?php endif; ?>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
@@ -255,6 +255,44 @@
 <script>
     $(".btn-create").click(function() {
         $("#create-user").modal("show")
+    });
+
+    $(".btn-delete-user").click(function(){
+            swal({
+                    title: "คุณแน่ใจว่าต้องการลบ ?",
+                    icon: "error",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: "<?php echo URL ?>/user_manage/delete",
+                            method: "POST",
+                            data: {
+                                "userId": $(this).attr('userId'),
+                            },
+                            success: function(data) {
+                                if (data) {
+                                    swal({
+                                        title: 'Success',
+                                        text: "ลบสำเร็จ",
+                                        icon: "success",
+                                        buttons: false,
+                                        timer: 1000
+                                    }).then(function() {
+                                        location.reload(true);
+                                    });
+
+                                }
+
+                            },
+                            error: function(data) {
+                                console.log(data);
+                            }
+                        });
+                    }
+                });
     });
 
     $(" .create-company").click(function() {
