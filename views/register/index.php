@@ -96,12 +96,15 @@
         type: 'post',
         data: $("#form_register").serialize(),
         success: function (res) {
+          console.log(res);
           if(res.status === "201"){
 
             swal({
               title: 'Success',
               text: "Registered sucess",
               icon: "success",
+            }).then(() => {
+                window.location.href = '/Rent-Car';
             });
             $('input').val('');
           }
