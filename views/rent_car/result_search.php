@@ -179,12 +179,6 @@ echo "<hr>";
                                         <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
                                     </a>
                                 </div>
-                            <?php elseif ($value->typeCar == "รถจักรยานยนต์"): ?>
-                                <div class="col-lg-4 col-md-4">
-                                    <a href="#">
-                                        <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
-                                    </a>
-                                </div>
                             <?php elseif ($value->typeCar == "รถทัวร์"): ?>
                                 <div class="col-lg-4 col-md-4">
                                     <a href="#">

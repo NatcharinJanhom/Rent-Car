@@ -264,11 +264,11 @@
             url: "<?php echo URL ?>/car_manage/get_car",
             method: "POST",
             success: function(data) {
-                $("#head-table").append("<tr><th>ลำดับที่</th><th>รถ</th><th>ทะเบียนรถ</th><th>สถานที่</th><th>ราคา</th><th></th></tr>");
+                $("#head-table").append("<tr><th>ลำดับที่</th><th>ยี่ห้อ</th><th>รุ่น</th><th>ประเภท</th><th>ทะเบียนรถ</th><th>สถานที่</th><th>ราคา</th><th></th></tr>");
                 $("#body-table").append("");
                 if (data) {
                     data.forEach(function(element, index) {
-                        $("#body-table").append("<tr id='carId" + element.carId + "'><td>" + (index + 1) + "</td><td>" + element.model + "</td><td>" + element.licensePlate + "</td><td>" + element.provinceByProvinceId.name + "</td><td>" + element.price + `</td><td>
+                        $("#body-table").append("<tr id='carId" + element.carId + "'><td>" + (index + 1) + "</td><td>" + element.brand + "</td><td>" + element.model + "</td><td>" + element.typeCar + "</td><td>" + element.licensePlate + "</td><td>" + element.provinceByProvinceId.name + "</td><td>" + element.price + `</td><td>
                         <center> <button type="button" class="btn btn-warning btn-edit" data-numCar="`+ (index + 1)+`" data-carId="` + element.carId + `" data-brand="` + element.brand + `" data-model="` + element.model + `" data-licensePlate="` + element.licensePlate + `" data-provinceByProvinceId="` + element.provinceByProvinceId.provinceId + `" data-provinceByAddressProvince="` + element.provinceByAddressProvince.provinceId + `" data-seatCount="` + element.seatCount + `" data-price="` + element.price + `" data-discount="` + element.discount + `" data-typeCar="` + element.typeCar + `">แก้ไข</button> <button type="button" class="btn btn-danger btn-delete" data-carId="` + element.carId + `" data-model="` + element.model + `" data-licensePlate="` + element.licensePlate + `" data-provinceByProvince="` + element.provinceByProvinceId.name + `">ลบ</button></center></td></tr>`);
                     });
                 }
@@ -281,32 +281,8 @@
         }).done(function() {
             $('#data').DataTable({
                 responsive: true,
-                "ordering": true,
-                "columnDefs": [{
-                        "width": "10%",
-                        "targets": 0
-                    },
-                    {
-                        "width": "20%",
-                        "targets": 1
-                    },
-                    {
-                        "width": "15%",
-                        "targets": 2
-                    },
-                    {
-                        "width": "20%",
-                        "targets": 3
-                    },
-                    {
-                        "width": "15%",
-                        "targets": 4
-                    },
-                    {
-                        "width": "20%",
-                        "targets": 5
-                    }
-                ],
+                ordering: true,
+               
             });
         });
     });

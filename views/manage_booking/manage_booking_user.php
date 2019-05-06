@@ -197,16 +197,10 @@
         var rentSearch = $(this).attr("data-rentSearch");
         swal({
                 title: "Are you sure Delete?",
+                text: model + "(" + typeCar + ")" + "  " + rentSearch,
                 icon: "error",
                 buttons: true,
                 dangerMode: true,
-                content: {
-                    element: "i",
-                    attributes: {
-                        className: "fa fa-car",
-                        innerText: model + "(" + typeCar + ")" + "  " + rentSearch
-                    },
-                },
             })
             .then((willDelete) => {
                 if (willDelete) {
