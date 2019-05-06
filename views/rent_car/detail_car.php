@@ -275,7 +275,49 @@ $data_search = $this->data_search;
         var province = "<?php echo $car->result->provinceByAddressProvince->name ?>";
         var startDate = "<?php echo $data_search['start_date']; ?>";
         var endDate = "<?php echo $data_search['end_date']; ?>";
-        if (num_day > 3) {
+        if (num_day > 10) {
+            $.ajax({
+                url: "<?php echo URL ?>/other_service/get_tripsDetail",
+                method: 'POST',
+                success: function(data) {
+                    console.log(data);
+                    var check = true;
+                    var index = 0;
+                    var almost = 2;
+                    if (almost > data[index][0].tripName) {
+                        almost = data[index][0].tripName;
+                    }
+                    if (check) {
+                        var ss = "";
+                        data[index][1].places.forEach(function(element, index2) {
+                            ss += element.placeName.toString()
+                            if (index2 != data[index][1].places.length - 1) {
+                                ss += ", ";
+                            }
+                        });
+                        $("#rent-car").append(`<input type="hidden" name="tripId" value="` + data[index][0].tripId + `">`);
+                        $("#promotion").after(`<div class="row font-size-15">
+                        <div class="col-md-6">
+                            <p><strong>เที่ยวกับทัวร์</strong></p>
+                            <p>` + data[index][0].tripName + `</p>
+                            <p>สถานที่ (` + ss + `)</p>
+                            <p>จังหวัด ` + data[index][1].provinceName + `</p>
+                        </div>
+                        <div class="col-md-6 zero-right" align="right">
+                            <p class="text-danger">จำนวน ` + almost + ` ที่นั่ง ฟรี!</p>
+                        </div>
+                    </div>
+                    <hr>`);
+
+                    }
+                },
+                //   <p>วันที่ ` + startDate + ` - `+data[index][0].backDate+`</p>
+                error: function(data) {
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+        } else if (num_day > 3) {
             $.ajax({
                 url: "<?php echo URL ?>/other_service/get_festival_by_date",
                 method: 'POST',

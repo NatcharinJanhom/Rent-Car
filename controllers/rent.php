@@ -52,6 +52,25 @@ class Rent extends Controller
 		$idFes = (isset($_REQUEST['idFes'])) ? $idFes = $_REQUEST['idFes'] : $idFes = NULL;
 		$countVip = (isset($_REQUEST['countVip'])) ? $countVip = $_REQUEST['countVip'] : $countVip = NULL;
 		$countRegular = (isset($_REQUEST['countRegular'])) ? $countRegular = $_REQUEST['countRegular'] : $countRegular = NULL;
+		$tripId = (isset($_REQUEST['tripId'])) ? $tripId = $_REQUEST['tripId'] : $tripId = NULL;
+		if (isset($_REQUEST['tripId'])) {
+			$data_other = array(
+				"memberName" => "driveCarCompany",
+				"memberAlomost" => 2,
+				"phonenumber" => $phoneNumber,
+				"trip" => [
+					"tripId" => $tripId
+				],
+				"email" => "rent_car@hotmail.com"
+			);
+			$api_detail = ApiHelper::callAPI("POST", URL_API_TOUR . "/member/reserve", json_encode($data_other));
+			if ($api_detail == "create successfully"){
+				print_r($api_detail);
+				$this->view->api_detail = $api_detail;
+			}
+			else
+				$this->view->api_detail = null;
+		}
 		if (isset($_REQUEST['idFes']) && isset($_REQUEST['countVip']) && isset($_REQUEST['countRegular'])) {
 			$data_other = array(
 				"idFes" => $idFes,
@@ -60,7 +79,10 @@ class Rent extends Controller
 				"countRegular" => $countRegular
 			);
 			$api_detail = ApiHelper::callAPI("POST", URL_API_MUSIC . "/booklists", json_encode($data_other));
-			$this->view->api_detail = $api_detail;
+			$res = json_decode($api_detail);
+			if (isset($res->status) && $res->status == "200")
+				$this->view->api_detail = $api_detail;
+				$this->view->api_detail = null;
 		}
 		if (!debug) {
 			$startDate = To_yearadd543($startDate);

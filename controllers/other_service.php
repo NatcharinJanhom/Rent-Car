@@ -33,4 +33,11 @@ class Other_service extends Controller
         header('Content-type: application/json');
         print $fest;
     }
+    function get_tripsDetail()
+    {
+        $trip = ApiHelper::callAPI("GET", URL_API_TOUR . "/tripsDetail");
+        header('Content-type: application/json');
+        print $trip;
+    }
+    
 }

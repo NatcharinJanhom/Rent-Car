@@ -36,6 +36,7 @@ if (isset($this->api_detail)) {
     $api_detail = json_decode($this->api_detail);
     print_r($api_detail);
 }
+
 ?>
 <div class="container">
     <div class="card mb-4">
@@ -142,20 +143,25 @@ if (isset($this->api_detail)) {
                     </div>
                 </div>
             </div>
-            <div class="card mb-4">
-                <div class="card-body">
-                    <p>บัตรฟรี!</p>
-                    <hr>
-                    <p>บัตรเข้าร่วมงาน <?php echo $api_detail->result[0]->festival->nameFes ?></p>
-                    <p>สถานที่ <?php echo $api_detail->result[0]->festival->location . " จังหวัด " . $api_detail->result[0]->festival->province; ?></p>
-                    <p class="m-0">วันที่ <?php echo date("d/m/Y", substr($api_detail->result[0]->festival->date, 0, -3)); ?></p>
-                    <p>หมายเลขบัตร</p>
-                    <?php foreach ($api_detail->result as $key => $value) : ?>
-                        <p><?php echo ($key + 1) ?>. <span class="text-primary"><?php echo $value->serialNumber; ?></span> <?php echo $value->festival->nameFes?></p>
-                    <?php endforeach; ?>
+            <?php if (isset($this->api_detail)) : ?>
+            <?php if ( $this->api_detail->status == "200") : ?>
+           
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <p>บัตรฟรี!</p>
+                        <hr>
+                        <p>บัตรเข้าร่วมงาน <?php echo $api_detail->result[0]->festival->nameFes ?></p>
+                        <p>สถานที่ <?php echo $api_detail->result[0]->festival->location . " จังหวัด " . $api_detail->result[0]->festival->province; ?></p>
+                        <p class="m-0">วันที่ <?php echo date("d/m/Y", substr($api_detail->result[0]->festival->date, 0, -3)); ?></p>
+                        <p>หมายเลขบัตร</p>
+                        <?php foreach ($api_detail->result as $key => $value) : ?>
+                            <p><?php echo ($key + 1) ?>. <span class="text-primary"><?php echo $value->serialNumber; ?></span> <?php echo $value->festival->nameFes ?></p>
+                        <?php endforeach; ?>
 
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>
