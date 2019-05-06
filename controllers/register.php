@@ -20,12 +20,11 @@ class Register extends Controller
             "password" => $_POST['password'],
             "fname" => $_POST['name'],
             "lname" => $_POST['surname'],
-            "address" => "21/1 ซ.2",
-            "phoneNumber" => "0818515125",
+            "address" => $_POST['address'],
+            "phoneNumber" => $_POST['phoneNumber'],
         );
         $result = ApiHelper::callAPI("POST", URL_API . "/users/registers", json_encode($data));
-        print_r($result);
-        //$result = json_decode($result);
-
+        header('Content-Type: application/json');
+        echo $result;
     }
 }

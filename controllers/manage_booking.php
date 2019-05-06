@@ -20,9 +20,13 @@ class Manage_Booking extends Controller
 				$list = ApiHelper::callAPI("GET", URL_API . "/rents", "", $user->result);
 				$this->view->list = $list;
 				$this->view->render('manage_booking/manage_booking_admin');
-			} else
-				//$list = ApiHelper::callAPI("GET", URL_API . "/rents/users/".$data->, "", $user->result);
-				$this->view->render('page/manage_booking');
+			} else {
+				$temp = explode(".", $user->result);
+				$data = json_decode(base64_decode($temp[1]));
+				$list = ApiHelper::callAPI("GET", URL_API . "/rents/users/" . $data->userId, "", $user->result);
+				$this->view->list = $list;
+				$this->view->render('manage_booking/manage_booking_user');
+			}
 		} else {
 			$this->view->render('manage_booking/booking_no_user');
 		}
@@ -56,5 +60,24 @@ class Manage_Booking extends Controller
 		}
 		header('Content-type: application/json');
 		print json_encode($check);
+	}
+	public function delete_rent()
+	{
+		$rentId = (isset($_POST['rentId'])) ? $rentId = $_POST['rentId'] : $rentId = NULL;
+		$data = array(
+			"rentId" => $rentId,
+		);
+		Session::init();
+		$user = Session::get("user");
+		$check = false;
+		try {
+			ApiHelper::callAPI("DELETE", URL_API . "/rents", json_encode($data), $user->result);
+			$check = true;
+		} catch (exception $e) {
+
+			$check = false;
+		}
+		header('Content-type: application/json');
+		print $check;
 	}
 }

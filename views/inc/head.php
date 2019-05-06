@@ -6,6 +6,11 @@
   <title>Rent-Car</title>
 
   <!-- Bootstrap core CSS -->
+<link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo URL; ?>css/datepicker.css">
+<script type="text/javascript" src="<?php echo URL; ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>js/datepicker.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <link href="<?php echo URL; ?>css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo URL; ?>css/datepicker.css">
   <script type="text/javascript" src="<?php echo URL; ?>js/jquery.min.js"></script>

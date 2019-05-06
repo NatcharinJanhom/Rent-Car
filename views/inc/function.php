@@ -15,3 +15,11 @@ function ymd_TO_dmy($date)
     else
     return $date;
 }
+function To_yearadd543($date)
+{
+    $temp =explode("-",$date);
+    if(sizeof($temp) > 1)
+    return ($temp[0]+543)."-".$temp[1]."-".$temp[2];
+    else
+    return $date;
+}
