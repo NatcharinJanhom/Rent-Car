@@ -7,18 +7,21 @@ class User_manage extends Controller
     {
         parent::__construct();
     }
-    function index() {
+    public function index()
+    {
         Session::init();
         $user = Session::get("user");
-        $customer=ApiHelper::callAPI("GET", URL_API . "/users/typeUser/CUSTOMER", "", $user->result);
-        $admin =ApiHelper::callAPI("GET", URL_API . "/users/typeUser/ADMIN", "", $user->result);
-        $company =	ApiHelper::callAPI("GET", URL_API . "/users/typeUser/COMPANY", "", $user->result);	
+        $customer = ApiHelper::callAPI("GET", URL_API . "/users/typeUser/CUSTOMER", "", $user->result);
+        $admin = ApiHelper::callAPI("GET", URL_API . "/users/typeUser/ADMIN", "", $user->result);
+        $company = ApiHelper::callAPI("GET", URL_API . "/users/typeUser/COMPANY", "", $user->result);
         $this->view->customer = $customer;
         $this->view->admin = $admin;
-        $this->view->company =$company;
-		$this->view->render('user_manage/index');
+        $this->view->company = $company;
+        $this->view->render('user_manage/index');
     }
-    function create() {	
+
+    public function create()
+    {
         print_r($_POST);
         $username = (isset($_POST['username'])) ? $username = $_POST['username'] : $username = null;
         $password = (isset($_POST['password'])) ? $password = $_POST['password'] : $password = null;
@@ -30,22 +33,41 @@ class User_manage extends Controller
         $companyName = (isset($_POST['companyName'])) ? $companyName = $_POST['companyName'] : $companyName = null;
         $data = array(
             "username" => $username,
-            "password" =>  $password,
-            "fname" =>  $fname,
-            "lname" =>  $lname,
+            "password" => $password,
+            "fname" => $fname,
+            "lname" => $lname,
             "typeUser" => $typeUser,
             "address" => $address,
             "phoneNumber" => $phoneNumber,
-            "companyName" => $companyName    
+            "companyName" => $companyName,
         );
         Session::init();
         $user = Session::get("user");
         try {
-            $res=ApiHelper::callAPI("POST", URL_API . "/users", json_encode($data), $user->result);
+            $res = ApiHelper::callAPI("POST", URL_API . "/users", json_encode($data), $user->result);
         } catch (exception $e) {
             $res = false;
         }
-        header("Location:".URL."user_manage");
-    }	
-		
+        header("Location:" . URL . "user_manage");
+    }
+
+    public function delete()
+    {
+        $userId = (isset($_POST['userId'])) ? $userId = $_POST['userId'] : $userId = null;
+        Session::init();
+        $user = Session::get("user");
+        try {
+            $res = ApiHelper::callAPI('DELETE', URL_API . "/users/$userId", "", $user->result);
+            $res = json_decode($res);
+            if ($res->status == "200") {
+                header("Location:" . URL . "user_manage");
+            } else {
+                header("Location:" . URL . "user_manage");
+            }
+        } catch (exception $e) {
+            $res = false;
+        }
+        header("Location:" . URL . "user_manage");
+    }
+
 }
