@@ -29,10 +29,14 @@
         text-align: center;
     }
 
+    .col-lg-1,
+    .col-md-1,
     .col-lg-2,
     .col-md-2,
     .col-lg-4,
-    .col-md-4 {
+    .col-md-4,
+    .col-lg-3,
+    .col-md-3 {
         padding-right: unset;
         padding-left: unset;
     }
@@ -44,6 +48,12 @@
     .text-warning {
         padding-top: 0px;
     }
+
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1400px;
+        }
+    }
 </style>
 <?php $list = json_decode($this->list); ?>
 <?php date_default_timezone_set('Asia/Bangkok');  ?>
@@ -52,45 +62,51 @@
         <div class="card-body">
             <h3>รายการเช่ารถ</h3>
             <hr>
-            <?php foreach ($list->result as $key => $value) :
-                if ($key != 0)
-                    echo "<hr>"; 
-                if($value->status == "รอการยืนยัน")
-                $status = "text-warning";
-                elseif($value->status == "รอรับรถ")
-                $status = "text-info";
-                elseif($value->status == "รับรถแล้ว")
-                $status = "text-success";
-                elseif($value->status == "คืนรถแล้ว")
-                $status = "text-primary";
-                ?>
+            <?php if (isset($list->result)) : ?>
+                <?php foreach ($list->result as $key => $value) :
+                    if ($key != 0)
+                        echo "<hr>";
+                    if ($value->status == "รอการยืนยัน")
+                        $status = "text-warning";
+                    elseif ($value->status == "รอรับรถ")
+                        $status = "text-info";
+                    elseif ($value->status == "รับรถแล้ว")
+                        $status = "text-success";
+                    elseif ($value->status == "คืนรถแล้ว")
+                        $status = "text-primary";
+                    ?>
 
-                <div class="row mb-2">
-                    <div class="col-lg-2 col-md-2">
-                        <p><span><i class="fa fa-car"></i> </span><?php echo $value->car->model; ?> (<?php echo $value->car->typeCar; ?>)</p>
+                    <div class="row mb-2">
+                        <div class="col-lg-2 col-md-2">
+                            <p><span><i class="fa fa-car"></i> </span><?php echo $value->car->model; ?> (<?php echo $value->car->typeCar; ?>)</p>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
+                            <p><span><i class="fa fa-map-marker-alt"></i> </span><?php echo $value->car->provinceByAddressProvince->name; ?></p>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <p><span><i class="fa fa-calendar-alt"></i> </span>วันที่รับ <?php echo  date("d/m/Y", substr($value->startDate, 0, -3)); ?>
+                                <span><i class="fa fa-calendar-alt"></i> </span>วันที่คืน <?php echo  date("d/m/Y", substr($value->endDate, 0, -3)); ?></p>
+                        </div>
+                        <div class="col-lg-1 col-md-1">
+                            <p><span><i class="fa fa-phone"></i> </span>
+                                <?php
+                                if (isset($value->user->phoneNumber))
+                                    echo $value->user->phoneNumber;
+                                else
+                                    echo $value->phoneNumberNotMember;
+                                ?></p>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
+                            <p>เลขที่จอง : <span class="text-primary"><?php echo $value->rentSearch; ?> </span></p>
+                        </div>
+                        <div class="col-lg-2 col-md-2">
+                            <p class="<?php echo $status; ?> "><?php echo $value->status; ?>
+                                <span><button type="button" class="btn btn-sm btn-light btn-change" data-status="<?php echo $value->status; ?>" data-rentId="<?php echo $value->rentId; ?>"><span><i class="fa fa-cogs"></i></span></button></span>
+                                <span><button type="button" class="btn btn-sm btn-danger btn-delete" data-typeCar="<?php echo $value->car->typeCar; ?>" data-model="<?php echo $value->car->model; ?>" data-rentId="<?php echo $value->rentId; ?>" data-rentSearch="<?php echo $value->rentSearch; ?>"><span><i class="fa fa-times"></i></span></button></span></p>
+                        </div>
                     </div>
-                    <div class="col-lg-2 col-md-2">
-                        <p>สถานที่รับ <?php echo $value->car->provinceByAddressProvince->name; ?></p>
-                    </div>
-                    <div class="col-lg-4 col-md-4">
-                        <p><span><i class="fa fa-calendar-alt"></i> </span>วันที่รับ <?php echo  date("d/m/Y", substr($value->startDate, 0, -3)); ?>
-                            <span><i class="fa fa-calendar-alt"></i> </span>วันที่คืน <?php echo  date("d/m/Y", substr($value->endDate, 0, -3)); ?></p>
-                    </div>
-                    <div class="col-lg-2 col-md-2">
-                        <p>เบอร์โทรศัพท์
-                            <?php
-                            if (isset($value->user->phoneNumber))
-                                echo $value->user->phoneNumber;
-                            else
-                                echo $value->phoneNumberNotMember;
-                            ?></p>
-                    </div>
-                    <div class="col-lg-2 col-md-2">
-                   <p class="<?php echo $status; ?> "><?php echo $value->status; ?>
-                            <span><button type="button" class="btn btn-sm btn-light btn-change" data-status="<?php echo $value->status; ?>" data-rentId="<?php echo $value->rentId; ?>"><span><i class="fa fa-cogs"></i></span></button></span></p>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>
@@ -122,7 +138,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <input type="hidden" id="rentId" name="rentId"  value="">
+                <input type="hidden" id="rentId" name="rentId" value="">
                 <button type="button" class="btn btn-primary status_change">ยืนยัน</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
             </div>
@@ -131,29 +147,91 @@
     </div>
 </div>
 <script>
-    $(".row").on('click','.btn-change',function(){
+    $(".row").on('click', '.btn-change', function() {
         var status_rent = $(this).attr("data-status");
         var id = $(this).attr("data-rentId");
         $("#status_rent").val(status_rent);
         $("#rentId").val(id);
-        $("#myModal").modal("show");     
+        $("#myModal").modal("show");
     });
 
-    $(".status_change").click(function(){
+    $(".status_change").click(function() {
         var status_rent = $("#status_rent").val();
-        var rentId =$("#rentId").val();
+        var rentId = $("#rentId").val();
         $.ajax({
-            url:"<?php echo URL ?>/manage_booking/update_status",
-            method:"POST",
-            data:{"status_rent" : status_rent,
-                    "rentId": rentId},
-            success:function(data){
-                if(data)
-                location.reload();
+            url: "<?php echo URL ?>/manage_booking/update_status",
+            method: "POST",
+            data: {
+                "status_rent": status_rent,
+                "rentId": rentId
             },
-            error:function(data){
+            success: function(data) {
+                if (data) {
+                    swal({
+                        title: 'Success',
+                        text: "แก้ไขสถานะ สำเร็จ",
+                        icon: "success",
+                        buttons: false,
+                        timer: 1000
+                    }).then(function() {
+                        location.reload(true);
+                    });
+
+                }
+
+            },
+            error: function(data) {
                 console.log(data);
             }
         });
+    });
+
+    $(".row").on('click', '.btn-delete', function() {
+        var id = $(this).attr("data-rentId");
+        var typeCar = $(this).attr("data-typeCar");
+        var model = $(this).attr("data-model");
+        var rentSearch = $(this).attr("data-rentSearch");
+        swal({
+                title: "Are you sure Delete?",
+                icon: "error",
+                buttons: true,
+                dangerMode: true,
+                content: {
+                    element: "i",
+                    attributes: {
+                        className: "fa fa-car",
+                        innerText: model + "(" + typeCar + ")" + "  " + rentSearch
+                    },
+                },
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "<?php echo URL ?>/manage_booking/delete_rent",
+                        method: "POST",
+                        data: {
+                            "rentId": id
+                        },
+                        success: function(data) {
+                            if (data) {
+                                swal({
+                                    title: 'Success',
+                                    text: "ลบ สำเร็จ",
+                                    icon: "success",
+                                    buttons: false,
+                                    timer: 1000
+                                }).then(function() {
+                                    location.reload(true);
+                                });
+
+                            }
+
+                        },
+                        error: function(data) {
+                            console.log(data);
+                        }
+                    });
+                }
+            });
     });
 </script>

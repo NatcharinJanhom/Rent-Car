@@ -112,46 +112,6 @@
                     </li>
                 </ol>
             </nav>
-            <div class="card">
-                <div class="card-body  bg-silver">
-                    <div class="row mb-4">
-                        <div class="col-md-1">
-                        </div>
-                        <div class="col-md-2 col-sm-6 mb-2">
-                            <a href="#">
-                                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
-                            </a>
-                            <p style="text-align:center;"> รถกะบะ </p>
-                        </div>
-                        <div class="col-md-2 col-sm-6 ">
-                            <a href="#">
-                                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
-                            </a>
-                            <p style="text-align:center;"> รถตู้</p>
-                        </div>
-                        <div class="col-md-2 col-sm-6  mb-2">
-                            <a href="#">
-                                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
-                            </a>
-                            <p style="text-align:center;"> รถเก๋ง</p>
-                        </div>
-                        <div class="col-md-2 col-sm-6 ">
-                            <a href="#">
-                                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
-                            </a>
-                            <p style="text-align:center;"> รถบัส </p>
-                        </div>
-                        <div class="col-md-2 col-sm-6 ">
-                            <a href="#">
-                                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
-                            </a>
-                            <p style="text-align:center;"> รถจักรยานยนต์ </p>
-                        </div>
-                        <div class="col-md-1">
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="row mb-4">

@@ -32,9 +32,9 @@
                         </li>
                     <?php endif; ?>
                 <?php endif;?>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="<?php echo URL; ?>car_type">ประเภทรถ</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo URL; ?>contact">ติดต่อเรา</a>
                     </li>

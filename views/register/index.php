@@ -93,7 +93,7 @@
       var actionurl = e.currentTarget.action;
       $.ajax({
         url: actionurl,
-        type: 'post',
+        method: 'post',
         data: $("#form_register").serialize(),
         success: function (res) {
           console.log(res);
