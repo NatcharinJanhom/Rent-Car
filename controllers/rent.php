@@ -3,20 +3,19 @@ require "libs/ApiHelper.php";
 
 class Rent extends Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    function search_car()
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	function search_car()
 	{
 		$start_date = (isset($_GET['start_date'])) ? $start_date = dmy_TO_ymd($_GET['start_date']) : $start_date = NULL;
 		$end_date = (isset($_GET['end_date'])) ? $end_date = dmy_TO_ymd($_GET['end_date']) : $end_date = NULL;
 		$provine_id = (isset($_GET['provine_id'])) ? $provine_id = $_GET['provine_id'] : $provine_id = NULL;
 		$data_search = array("start_date" => $start_date, "end_date" => $end_date, "provine_id" => $provine_id);
-		if(!debug)
-		{
-			$start_date=To_yearadd543($start_date);
-			$end_date=To_yearadd543($end_date);
+		if (!debug) {
+			$start_date = To_yearadd543($start_date);
+			$end_date = To_yearadd543($end_date);
 		}
 		$carList = ApiHelper::callAPI("GET", URL_API . "/rents/cars/startDate/$start_date/endDate/$end_date/province/$provine_id");
 		$this->view->carList = $carList;
@@ -32,12 +31,11 @@ class Rent extends Controller
 		$provine_id = (isset($_GET['provine_id'])) ? $provine_id = $_GET['provine_id'] : $provine_id = NULL;
 		$carId = (isset($_GET['carId'])) ? $carId = $_GET['carId'] : $carId = NULL;
 		$data_search = array("start_date" => $start_date, "end_date" => $end_date, "provine_id" => $provine_id, "carId" => $carId);
-		if(!debug)
-		{
-			$start_date=To_yearadd543($start_date);
-			$end_date=To_yearadd543($end_date);
+		if (!debug) {
+			$start_date = To_yearadd543($start_date);
+			$end_date = To_yearadd543($end_date);
 		}
-	
+
 		$car = ApiHelper::callAPI("GET", URL_API . "/cars/$carId");
 		$this->view->car = $car;
 		$this->view->data_search = $data_search;
@@ -51,26 +49,34 @@ class Rent extends Controller
 		$withDriver = (isset($_REQUEST['withDriver'])) ? $withDriver = $_REQUEST['withDriver'] : $withDriver = NULL;
 		$address = (isset($_REQUEST['address'])) ? $address = $_REQUEST['address'] : $address = NULL;
 		$phoneNumber = (isset($_REQUEST['phoneNumber'])) ? $phoneNumber = $_REQUEST['phoneNumber'] : $phoneNumber = NULL;
-		if(!debug)
-		{
-			$startDate=To_yearadd543($startDate);
-			$endDate=To_yearadd543($endDate);
+		$idFes = (isset($_REQUEST['idFes'])) ? $idFes = $_REQUEST['idFes'] : $idFes = NULL;
+		$countVip = (isset($_REQUEST['countVip'])) ? $countVip = $_REQUEST['countVip'] : $countVip = NULL;
+		$countRegular = (isset($_REQUEST['countRegular'])) ? $countRegular = $_REQUEST['countRegular'] : $countRegular = NULL;
+		if (isset($_REQUEST['idFes']) && isset($_REQUEST['countVip']) && isset($_REQUEST['countRegular'])) {
+			$data_other = array(
+				"idFes" => $idFes,
+				"idUser" => 7,
+				"countVip" => $countVip,
+				"countRegular" => $countRegular
+			);
+			$api_detail = ApiHelper::callAPI("POST", URL_API_MUSIC . "/booklists", json_encode($data_other));
+			$this->view->api_detail = $api_detail;
+		}
+		if (!debug) {
+			$startDate = To_yearadd543($startDate);
+			$endDate = To_yearadd543($endDate);
 		}
 		Session::init();
 		$user = Session::get("user");
-		if($user)
-		{
+		if ($user) {
 			$data = array(
 				"carId" =>	$carId,
 				"startDate" => $startDate,
 				"endDate" => $endDate,
 				"withDriver" => $withDriver
 			);
-			$booking_detail = ApiHelper::callAPI("POST", URL_API . "/rents/member", json_encode($data),$user->result);
-			
-		}
-		else
-		{
+			$booking_detail = ApiHelper::callAPI("POST", URL_API . "/rents/member", json_encode($data), $user->result);
+		} else {
 			$data = array(
 				"carId" =>	$carId,
 				"refId" => 0,
