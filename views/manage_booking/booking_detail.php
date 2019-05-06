@@ -31,9 +31,10 @@ function history_Back(num) {
 <div class="container">
     <div class="card mb-4">
         <div class="card-body">
+           <?php if (!is_null($detail)): ?>
             <h3><span><i class="fa fa-check-circle"></i></span> การจองเสร็จสิ้น </h3>
             <!-- <span class="badge badge-warning"><i class="fa fa-history"></i> รอการติดต่อกลับจากบริษัทรถเช่า</span> -->
-            <h3>รหัสการจองของคุณคือ <span class="text-primary"><?php echo $detail->result->rentSearch ?> </span> </h3>
+            <h3>รหัสการเช่าของคุณคือ <span class="text-primary"><?php echo $detail->result->rentSearch ?> </span> </h3>
             <div class="card mb-4">
                 <div class="card-body">
                     <p align="right">สถานะการจอง</p>
@@ -120,6 +121,9 @@ function history_Back(num) {
                     </div>
                 </div>
             </div>
+             <?php else: ?>
+                <h3>ไม่พบรหัสการเช่าของคุณ</h3>
+            <?php endif;?>
         </div>
     </div>
 </div>

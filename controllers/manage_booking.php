@@ -36,7 +36,12 @@ class Manage_Booking extends Controller
     {
         $rent_search = (isset($_POST['rent_search'])) ? $rent_search = $_POST['rent_search'] : $rent_search = null;
         $booking_detail = ApiHelper::callAPI("GET", URL_API . "/rents/rentSearch/$rent_search");
-        $this->view->booking_detail = $booking_detail;
+        $res = json_decode($booking_detail);
+        if (isset($res->status) && $res->status == "200") {
+            $this->view->booking_detail = $booking_detail;
+        } else {
+            $this->view->booking_detail = null;
+        }
         $this->view->render('manage_booking/booking_detail');
     }
     public function update_status()
