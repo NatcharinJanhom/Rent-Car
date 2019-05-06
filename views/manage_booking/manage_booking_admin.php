@@ -97,7 +97,7 @@
 if (isset($value->user->phoneNumber)) {
     echo $value->user->phoneNumber . "<br/>(" . $value->user->fname . " " . $value->user->lname . ")";
 } else {
-    echo $value->phoneNumberNotMember . "<br/>(" . $value->fname . " " . $value->lname . ")";
+    echo $value->phoneNumberNotMember . "<br/>(Not member)";
 }
 
 ?></p>
