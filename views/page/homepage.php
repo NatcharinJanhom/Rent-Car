@@ -34,8 +34,8 @@
 </style>
 <header>
 
-  <?php $province = $this->province; ?>
-  <?php $province = json_decode($province); ?>
+  <?php $province = $this->province;?>
+  <?php $province = json_decode($province);?>
   <div class="row pad-10 ml-2 mr-2">
     <div class="col-lg-5 mr-bot-10">
       <div class="card ">
@@ -46,13 +46,13 @@
               <label for="provine_id">จังหวัด</label>
               <select class="form-control" id="provine_id" name="provine_id">
                 <option value=""> เลือกจังหวัด </option>
-                <?php if ($province->status == "200") :
-                  foreach ($province->result as $key => $value) {
-                    echo "<option value='$value->provinceId'> $value->name </option>";
-                  }
-                  ?>
+                <?php if ($province->status == "200"):
+    foreach ($province->result as $key => $value) {
+        echo "<option value='$value->provinceId'> $value->name </option>";
+    }
+    ?>
 
-                <?php endif; ?>
+																							                <?php endif;?>
               </select>
             </div>
             <div class="form-group">
@@ -85,22 +85,65 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="6"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="7"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="8"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
-          <!-- Slide One - Set the background image for this slide in the line below -->
-          <div class="carousel-item active" style="background-image: url('<?php echo URL ?>image/original-1416034605429.jpg')">
+
+          <div class="carousel-item active" style="background-image: url('<?php echo URL ?>image/honda-civic-2019MY-A01.jpg')">
             <div class="carousel-caption d-none d-md-block">
 
             </div>
           </div>
-          <!-- Slide Two - Set the background image for this slide in the line below -->
-          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg')">
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/Hyundai.jpg')">
             <div class="carousel-caption d-none d-md-block">
 
             </div>
           </div>
-          <!-- Slide Three - Set the background image for this slide in the line below -->
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/benz.png')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
           <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/super-white-revo.png')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/Hyundai_H1.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+           <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/original-1416034605429.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+
+            </div>
+          </div>
+
+
+           <div class="carousel-item" style="background-image: url('<?php echo URL ?>image/Honda_PCX150_L_1.jpg')">
             <div class="carousel-caption d-none d-md-block">
 
             </div>
@@ -311,7 +354,7 @@
     {
       alert("กรุณาเลือกจังหวัด");
     }
-    
+
 
   });
 </script>
