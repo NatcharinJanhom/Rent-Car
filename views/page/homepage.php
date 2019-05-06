@@ -126,192 +126,280 @@
       <a class="nav-link active" data-toggle="tab" href="#chiang_mai">เชียงใหม่</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu1">กรุงเทพ</a>
+      <a class="nav-link" data-toggle="tab" href="#bangkok">กรุงเทพ</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2">ภูเก็ต</a>
+      <a class="nav-link" data-toggle="tab" href="#phuket">ภูเก็ต</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2">ขอนแก่น</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2">ภูเก็ต</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        จังหวัดอื่นๆ
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">นนทบุรี</a>
-        <a class="dropdown-item" href="#">เชียงราย</a>
-        <a class="dropdown-item" href="#">กระบี่</a>
-      </div>
+      <a class="nav-link" data-toggle="tab" href="#khonkean">ขอนแก่น</a>
     </li>
   </ul>
 
   <!-- Tab panes -->
+  <?php $chiang_mai = json_decode($this->chiang_mai);
+  $bangkok = json_decode($this->bangkok);
+  $phuket = json_decode($this->phuket);
+  $khonkean = json_decode($this->khonkean); ?>
   <div class="tab-content">
-    <div id="chiang_mai" class="container tab-pane active"><br>
-      <div class="row">
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
+    <div id="chiang_mai" class="container tab-pane active">
+      <?php if ($chiang_mai->status == "200") : ?>
 
-            <div class="card-body">
-              <a href="#">
-                <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
-              </a>
-            </div>
-            <div class="card-footer margin-auto-0">
-              <a href="#" class="btn btn-primary ">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
+        <div class="row mt-4">
+          <?php foreach ($chiang_mai->result as $key => $value) : ?>
+            <div class="col-lg-4 mb-4">
+              <div class="card">
 
-            <div class="card-body">
-              <a href="#">
-                <img class="img-fluid-car" src="<?php echo URL ?>image/2016_09_29_Nissan_Micra_1.jpg" alt="">
-              </a>
+                <div class="card-body">
+                  <?php if ($value->typeCar == "รถเก๋ง" && $value->brand == "Honda") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_civic.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Toyota") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Mercedes-Benz") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/benz.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Hyundai") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถกระบะ") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Toyota") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Hyundai") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai_H1.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถทัวร์") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
+                    </a>
+                  <?php endif; ?>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
+      <?php endif; ?>
 
-            <div class="card-body">
-              <a href="#"> <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt=""> </a>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
     </div>
-    <div id="menu1" class="container tab-pane fade"><br>
-      <!-- Marketing Icons Section -->
-      <div class="row">
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
 
-            <div class="card-body">
-              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
+    <div id="bangkok" class="container tab-pane fade">
+      <?php if ($bangkok->status == "200") : ?>
 
-            <div class="card-body">
-              <a href="#">
-                <img class="img-fluid" src="http://placehold.it/400x300" alt="">
-              </a>
+        <div class="row mt-4">
+          <?php foreach ($bangkok->result as $key => $value) : ?>
+            <div class="col-lg-4 mb-4">
+              <div class="card">
+
+                <div class="card-body">
+                  <?php if ($value->typeCar == "รถเก๋ง" && $value->brand == "Honda") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_civic.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Toyota") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Mercedes-Benz") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/benz.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Hyundai") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถกระบะ") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Toyota") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Hyundai") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai_H1.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถทัวร์") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
+                    </a>
+                  <?php endif; ?>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
+      <?php endif; ?>
     </div>
-    <div id="menu2" class="container tab-pane fade"><br>
-      <!-- Marketing Icons Section -->
-      <div class="row">
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
+    <div id="phuket" class="container tab-pane fade"><br>
+      <?php if ($phuket->status == "200") : ?>
 
-            <div class="card-body">
-              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
+        <div class="row mt-4">
+          <?php foreach ($phuket->result as $key => $value) : ?>
+            <div class="col-lg-4 mb-4">
+              <div class="card">
 
-            <div class="card-body">
-              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+                <div class="card-body">
+                  <?php if ($value->typeCar == "รถเก๋ง" && $value->brand == "Honda") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_civic.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Toyota") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Mercedes-Benz") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/benz.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Hyundai") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถกระบะ") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Toyota") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Hyundai") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai_H1.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถทัวร์") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
+                    </a>
+                  <?php endif; ?>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <a href="#"> <img class="img-fluid" src="http://placehold.it/400x300" alt=""> </a>
+      <?php endif; ?>
+    </div>
+
+    <!-- Marketing Icons Section -->
+    <div id="khonkean" class="container tab-pane fade"><br>
+      <?php if ($khonkean->status == "200") : ?>
+
+        <div class="row mt-4">
+          <?php foreach ($khonkean->result as $key => $value) : ?>
+            <div class="col-lg-4 mb-4">
+              <div class="card">
+
+                <div class="card-body">
+                  <?php if ($value->typeCar == "รถเก๋ง" && $value->brand == "Honda") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_civic.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Toyota") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/2018-Toyota-Camry-Banner-Image-.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Mercedes-Benz") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/benz.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถเก๋ง" && $value->brand == "Hyundai") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถกระบะ") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/super-white-revo.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Toyota") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/6de3961eba9b20e906e321eaa3154276.png" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถตู้" && $value->brand == "Hyundai") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Hyundai_H1.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถจักรยานยนต์") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/Honda_PCX150_L_1.jpg" alt="">
+                    </a>
+                  <?php elseif ($value->typeCar == "รถทัวร์") : ?>
+                    <a href="#">
+                      <img class="img-fluid-car" src="<?php echo URL ?>image/original-1416034605429.jpg" alt="">
+                    </a>
+                  <?php endif; ?>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                </div>
+              </div>
             </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
-      </div>
-      <!-- /.row -->
+      <?php endif; ?>
     </div>
   </div>
-  <!-- Marketing Icons Section -->
+  <!-- /.container -->
+  <script>
+    (function($) {
+
+      'use strict';
+      $('.datepicker-popup').datepicker({
+        enableOnReadonly: true,
+        todayHighlight: true,
+        format: "dd/mm/yyyy"
+      });
+      var today = new Date();
+      var tomorrow = new Date();
+      tomorrow.setDate(today.getDate() + 1);
+      $('#pick-up').datepicker('setDate', today);
+      $('#return').datepicker('setDate', tomorrow);
+    })(jQuery);
+  </script>
+
+  <script>
+    $(".btn_search_car").click(function() {
+      var start_date = $("#start_date").val();
+      var end_date = $("#end_date").val();
+      var province = $("#provine_id").val();
+      if (province) {
+        $("#search_car").submit();
+      } else {
+        alert("กรุณาเลือกจังหวัด");
+      }
 
 
-
-
-
-
-</div>
-<!-- /.container -->
-<script>
-  (function($) {
-
-    'use strict';
-    $('.datepicker-popup').datepicker({
-      enableOnReadonly: true,
-      todayHighlight: true,
-      format: "dd/mm/yyyy"
     });
-    var today = new Date();
-    var tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-    $('#pick-up').datepicker('setDate', today);
-    $('#return').datepicker('setDate', tomorrow);
-  })(jQuery);
-</script>
-
-<script>
-  $(".btn_search_car").click(function() {
-    var start_date = $("#start_date").val();
-    var end_date = $("#end_date").val();
-    var province = $("#provine_id").val();
-    if(province)
-    {
-      $("#search_car").submit();
-    }
-    else
-    {
-      alert("กรุณาเลือกจังหวัด");
-    }
-    
-
-  });
-</script>
+  </script>
