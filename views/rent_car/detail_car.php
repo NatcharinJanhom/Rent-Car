@@ -153,7 +153,7 @@ $data_search = $this->data_search;
 
                         </div>
                     </div>
-                    <hr>
+                    <hr id="promotion">
                     <div class="row">
                         <div class="col-md-6">
                             <p class=" font-weight-500"> ราคารวม </p>
@@ -249,5 +249,50 @@ $data_search = $this->data_search;
         $("#modal-withDriver").val(check);
         $("#myModal").modal('hide');
         $("#rent-car").submit();
+    });
+
+    $(document).ready(function(){
+        var num = <?php echo strtotime($data_search['end_date']) - strtotime($data_search['start_date']) ?>;
+        var num_day = num / (60 * 60 * 24) + 1 ;
+        var province ="<?php echo $car->result->provinceByAddressProvince->name?>";
+        var startDate ="<?php echo $data_search['start_date'];?>" ;
+        var endDate = "<?php echo $data_search['end_date'];?>";
+        if(num_day > 3)
+        {
+            $.ajax({
+                url:"<?php echo URL ?>/other_service/get_festival_by_date",
+                method:'POST',
+                data:{
+                    "province" :province,
+                    "startDate":startDate,
+                    "endDate":endDate,
+                },
+                success:function(data)
+                {
+                    console.log(data);
+                //     var ss =data.result[0].date.toString();
+                //     console.log(ss);
+                    
+                //     console.log(ss.substring(0,ss.length-3));
+                //    var day = Date(ss.substring(0,ss.length-3));
+                //    console.log(day.getDate());
+                    // $("#promotion").after(`<div class="row font-size-15">
+                    //     <div class="col-md-6">
+                    //         <p></p>
+                    //     </div>
+                    //     <div class="col-md-6 zero-right" align="right">
+                    //         <p class="text-danger">ฟรี!</p>
+
+                    //     </div>
+                    // </div>
+                    // <hr>`);
+                },
+                error:function(data)
+                {
+                    console.log("error");
+                    console.log(data);
+                }
+            });
+        }
     });
 </script>
