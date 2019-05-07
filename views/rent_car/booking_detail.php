@@ -143,8 +143,8 @@ if (isset($this->api_detail)) {
                     </div>
                 </div>
             </div>
-            <?php if (isset($this->api_detail)) : ?>
-            <?php if ( $this->api_detail->status == "200") : ?>
+            <?php if (isset( $api_detail )) : ?>
+            <?php if (  $api_detail->status == 200) : ?>
            
                 <div class="card mb-4">
                     <div class="card-body">

@@ -29,7 +29,7 @@ class Car_manage extends Controller
         $typeCar = (isset($_POST['typeCar'])) ? $typeCar = $_POST['typeCar'] : $typeCar = NULL;
         $brand = (isset($_POST['brand'])) ? $brand = $_POST['brand'] : $brand = NULL;
         $price = (isset($_POST['price'])) ? $price = $_POST['price'] : $price = NULL;
-        $discount = (isset($_POST['discount'])) ? $discount = $_POST['discount'] : $discount = NULL;
+        //$discount = (isset($_POST['discount'])) ? $discount = $_POST['discount'] : $discount = NULL;
         $provinceByProvinceId = (isset($_POST['provinceByProvinceId'])) ? $provinceByProvinceId = $_POST['provinceByProvinceId'] : $provinceByProvinceId = NULL;
         $provinceByAddressProvince = (isset($_POST['provinceByAddressProvince'])) ? $provinceByAddressProvince = $_POST['provinceByAddressProvince'] : $provinceByAddressProvince = NULL;
         $data = array(
@@ -39,7 +39,7 @@ class Car_manage extends Controller
             "typeCar" => $typeCar,
             "brand" => $brand,
             "price" => $price,
-            "discount" => $discount,
+            "discount" => 0,
             "provinceByProvinceId" =>  $provinceByProvinceId,
             "provinceByAddressProvince" => $provinceByAddressProvince
         );
@@ -63,7 +63,7 @@ class Car_manage extends Controller
         $typeCar = (isset($_POST['typeCar'])) ? $typeCar = $_POST['typeCar'] : $typeCar = NULL;
         $brand = (isset($_POST['brand'])) ? $brand = $_POST['brand'] : $brand = NULL;
         $price = (isset($_POST['price'])) ? $price = $_POST['price'] : $price = NULL;
-        $discount = (isset($_POST['discount'])) ? $discount = $_POST['discount'] : $discount = NULL;
+        //$discount = (isset($_POST['discount'])) ? $discount = $_POST['discount'] : $discount = NULL;
         $provinceByProvinceId = (isset($_POST['provinceByProvinceId'])) ? $provinceByProvinceId = $_POST['provinceByProvinceId'] : $provinceByProvinceId = NULL;
         $provinceByAddressProvince = (isset($_POST['provinceByAddressProvince'])) ? $provinceByAddressProvince = $_POST['provinceByAddressProvince'] : $provinceByAddressProvince = NULL;
         $data = array(
@@ -73,7 +73,7 @@ class Car_manage extends Controller
             "typeCar" => $typeCar,
             "brand" => $brand,
             "price" => $price,
-            "discount" => $discount,
+             "discount" => 0,
             "provinceByProvinceId" =>  $provinceByProvinceId,
             "provinceByAddressProvince" => $provinceByAddressProvince
         );

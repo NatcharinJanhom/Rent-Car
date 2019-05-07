@@ -111,11 +111,7 @@
                                 <input type="text" class="form-control" id="price" name="price" required>
 
                             </div>
-                            <div class="col-md-4">
-                                <label for="discount">ส่วนลด (เปอร์เซ็นต์)</label>
-                                <input type="text" class="form-control" id="discount" name="discount" required>
-
-                            </div>
+                            
 
                         </div>
                     </div>
@@ -211,12 +207,6 @@
                                 <input type="text" class="form-control" id="edit-price" name="price" required>
 
                             </div>
-                            <div class="col-md-4">
-                                <label for="discount">ส่วนลด (เปอร์เซ็นต์)</label>
-                                <input type="text" class="form-control" id="edit-discount" name="discount" required>
-
-                            </div>
-
                         </div>
                     </div>
             </div>
@@ -332,7 +322,7 @@
         var provinceByAddressProvince = $(this).attr("data-provinceByAddressProvince");
         var seatCount = $(this).attr("data-seatCount");
         var price = $(this).attr("data-price");
-        var discount = $(this).attr("data-discount");
+        // var discount = $(this).attr("data-discount");
         var numCar = $(this).attr("data-numCar");
         $("#edit-carId").val(carId);
         $("#edit-typeCar").val(typeCar);
@@ -343,7 +333,7 @@
         $("#edit-provinceByAddressProvince").val(provinceByAddressProvince);
         $("#edit-seatCount").val(seatCount);
         $("#edit-price").val(price);
-        $("#edit-discount").val(discount);
+        // $("#edit-discount").val(discount);
         $("#edit-numCar").val(numCar);
         $("#edit-car").modal("show");
     });
@@ -359,7 +349,7 @@
         var provinceByAddressProvince = $("#edit-provinceByAddressProvince").val();
         var seatCount = $("#edit-seatCount").val();
         var price = $("#edit-price").val();
-        var discount = $("#edit-discount").val();
+        // var discount = $("#edit-discount").val();
         var numCar = $("#edit-numCar").val();
         $.ajax({
             url: "<?php echo URL ?>/car_manage/edit",
@@ -374,14 +364,14 @@
                 "provinceByAddressProvince": provinceByAddressProvince,
                 "seatCount": seatCount,
                 "price": price,
-                "discount": discount,
+                // "discount": discount,
             },
             success: function(data) {
                 console.log(data);
                 if (data) {
                         $("#carId" + data.result.carId).empty();
-                        $("#carId" + data.result.carId).append("<td>" + numCar + "</td><td>" + data.result.model + "</td><td>" + data.result.licensePlate + "</td><td>" + data.result.provinceByProvinceId.name + "</td><td>" + data.result.price + `</td><td>
-                        <center> <button type="button" class="btn btn-warning btn-edit" data-numCar="`+ numCar+`" data-carId="` + data.result.carId + `" data-brand="` + data.result.brand + `" data-model="` + data.result.model + `" data-licensePlate="` + data.result.licensePlate + `" data-provinceByProvinceId="` + data.result.provinceByProvinceId.provinceId + `" data-provinceByAddressProvince="` + data.result.provinceByAddressProvince.provinceId + `" data-seatCount="` + data.result.seatCount + `" data-price="` + data.result.price + `" data-discount="` + data.result.discount + `" data-typeCar="` + data.result.typeCar + `">แก้ไข</button> <button type="button" class="btn btn-danger" data-carId="` + data.result.carId + `">ลบ</button></center></td>`);
+                        $("#carId" + data.result.carId).append("<td>" + numCar + "</td><td>" + data.result.brand + "</td><td>" + data.result.model + "</td><td>" + data.result.typeCar + "</td><td>" + data.result.licensePlate + "</td><td>" + data.result.provinceByProvinceId.name + "</td><td>" + data.result.price + `</td><td>
+                        <center> <button type="button" class="btn btn-warning btn-edit" data-numCar="`+ numCar+`" data-carId="` + data.result.carId + `" data-brand="` + data.result.brand + `" data-model="` + data.result.model + `" data-licensePlate="` + data.result.licensePlate + `" data-provinceByProvinceId="` + data.result.provinceByProvinceId.provinceId + `" data-provinceByAddressProvince="` + data.result.provinceByAddressProvince.provinceId + `" data-seatCount="` + data.result.seatCount + `" data-price="` + data.result.price + `" data-discount="` + data.result.discount + `" data-typeCar="` + data.result.typeCar + `">แก้ไข</button> <button type="button" class="btn btn-danger btn-delete" data-carId="` + data.result.carId + `" data-model="` + data.result.model + `" data-licensePlate="` + data.result.licensePlate + `" data-provinceByProvince="` + data.result.provinceByProvinceId.provinceId + `">ลบ</button></center></td>`);
                 }
             },
             error: function(data) {

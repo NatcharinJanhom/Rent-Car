@@ -118,10 +118,10 @@
                         <div class="col-lg-9 col-md-9">
                         </div>
                         <div class="col-lg-3 col-md-3">
-                            <select class="form-control">
+                            <!-- <select class="form-control">
                                 <option>เรียงราคา น้อย - มาก</option>
                                 <option>เรียงราคา มาก - น้อย</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
 
@@ -216,11 +216,6 @@ echo "<hr>";
             todayHighlight: true,
             format: "dd/mm/yyyy"
         });
-        // var today = new Date();
-        // var tomorrow = new Date();
-        // tomorrow.setDate(today.getDate() + 1);
-        // $('#pick-up').datepicker('setDate', today);
-        // $('#return').datepicker('setDate', tomorrow);
     })(jQuery);
 </script>
 

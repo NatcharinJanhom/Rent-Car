@@ -17,7 +17,7 @@ class Rent extends Controller
 			$start_date = To_yearadd543($start_date);
 			$end_date = To_yearadd543($end_date);
 		}
-		$carList = ApiHelper::callAPI("GET", URL_API . "/rents/cars/startDate/$start_date/endDate/$end_date/province/$provine_id");
+		$carList = ApiHelper::callAPI("GET", URL_API . "/rents/cars/startDate/$start_date/endDate/$end_date/province/$provine_id/orderPriceASC/true");
 		$this->view->carList = $carList;
 		$province = ApiHelper::callAPI("GET", URL_API . "/provinces");
 		$this->view->province = $province;
@@ -78,10 +78,14 @@ class Rent extends Controller
 				"countVip" => $countVip,
 				"countRegular" => $countRegular
 			);
+			
 			$api_detail = ApiHelper::callAPI("POST", URL_API_MUSIC . "/booklists", json_encode($data_other));
 			$res = json_decode($api_detail);
 			if (isset($res->status) && $res->status == "200")
+			{
 				$this->view->api_detail = $api_detail;
+			}
+			else
 				$this->view->api_detail = null;
 		}
 		if (!debug) {

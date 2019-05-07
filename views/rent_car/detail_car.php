@@ -253,6 +253,10 @@ $data_search = $this->data_search;
 </div>
 
 <script>
+
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
     function history_Back() {
         window.history.back();
     }
@@ -284,6 +288,8 @@ $data_search = $this->data_search;
                     var check = true;
                     var index = 0;
                     var almost = 2;
+                    index =getRndInteger(0,data.length-1);
+                    console.log(index);
                     if (almost > data[index][0].tripName) {
                         almost = data[index][0].tripName;
                     }
@@ -330,23 +336,26 @@ $data_search = $this->data_search;
                     console.log(data);
                     var n = 2;
                     var vip = 2;
-                    if (n > data.result[0].regularAmount) {
-                        n = data.result[0].regularAmount;
+                    var index =0;
+                    index = getRndInteger(0,data.result.length-1);
+                    console.log(index);
+                    if (n > data.result[index].regularAmount) {
+                        n = data.result[index].regularAmount;
                     }
-                    if (vip > data.result[0].vipAmount) {
-                        vip = data.result[0].vipAmount;
+                    if (vip > data.result[index].vipAmount) {
+                        vip = data.result[index].vipAmount;
                     }
                     var sum = n + vip;
-                    $("#rent-car").append(`<input type="hidden" name="idFes" value="` + data.result[0].idFes + `">
+                    $("#rent-car").append(`<input type="hidden" name="idFes" value="` + data.result[index].idFes + `">
                     <input type="hidden" name="countVip" value="` + n + `">
                     <input type="hidden" name="countRegular" value="` + vip + `">`);
 
                     $("#promotion").after(`<div class="row font-size-15">
                         <div class="col-md-6">
                             <p><strong>บัตรเข้าร่วมงาน</strong></p>
-                            <p>` + data.result[0].nameFes + `</p>
-                            <p> ณ  ` + data.result[0].location + `</p>
-                            <p>จังหวัด ` + data.result[0].province + `</p>
+                            <p>` + data.result[index].nameFes + `</p>
+                            <p> ณ  ` + data.result[index].location + `</p>
+                            <p>จังหวัด ` + data.result[index].province + `</p>
                         </div>
                         <div class="col-md-6 zero-right" align="right">
                             <p class="text-danger">จำนวน ` + sum + ` ใบ ฟรี!</p>

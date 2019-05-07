@@ -77,6 +77,7 @@ class Manage_Booking extends Controller
         try {
             $result = ApiHelper::callAPI("DELETE", URL_API . "/rents", json_encode($data), $user->result);
             $result = json_decode($result);
+           
             if ($result->status == "200") {
                 $check = true;
             } else {

@@ -161,7 +161,7 @@
 </header>
 <div class="container">
 
-  <h1 class="my-4">Booking</h1>
+  <h1 class="my-4">Booking <span id="book_date" class="h4"></span></h1>
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" data-toggle="tab" href="#chiang_mai">เชียงใหม่</a>
@@ -231,7 +231,12 @@
                   <?php endif; ?>
                 </div>
                 <div class="card-footer text-right">
-                  <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                  <form class="forms-sample" action="<?php echo URL ?>rent/search_car">
+                    <input type="hidden" name="provine_id" value="38">
+                    <input type="hidden" class="date_st" name="start_date" value="">
+                    <input type="hidden" class="date_end" name="end_date" value="">
+                    <button type="submit" class="btn btn-primary">รายละเอียดเพิ่มเติม</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -290,7 +295,12 @@
                     <?php endif; ?>
                   </div>
                   <div class="card-footer text-right">
-                    <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                    <form class="forms-sample" action="<?php echo URL ?>rent/search_car">
+                      <input type="hidden" name="provine_id" value="1">
+                      <input type="hidden" class="date_st" name="start_date" value="">
+                      <input type="hidden" class="date_end" name="end_date" value="">
+                      <button type="submit" class="btn btn-primary">รายละเอียดเพิ่มเติม</button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -347,7 +357,12 @@
                   <?php endif; ?>
                 </div>
                 <div class="card-footer text-right">
-                  <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                  <form class="forms-sample" action="<?php echo URL ?>rent/search_car">
+                    <input type="hidden" name="provine_id" value="66">
+                    <input type="hidden" class="date_st" name="start_date" value="">
+                    <input type="hidden" class="date_end" name="end_date" value="">
+                    <button type="submit" class="btn btn-primary">รายละเอียดเพิ่มเติม</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -405,7 +420,12 @@
                   <?php endif; ?>
                 </div>
                 <div class="card-footer text-right">
-                  <a href="#" class="btn btn-primary">รายละเอียดเพิ่มเติม</a>
+                  <form class="forms-sample" action="<?php echo URL ?>rent/search_car">
+                    <input type="hidden" name="provine_id" value="28">
+                    <input type="hidden" class="date_st" name="start_date" value="">
+                    <input type="hidden" class="date_end" name="end_date" value="">
+                    <button type="submit" class="btn btn-primary">รายละเอียดเพิ่มเติม</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -427,6 +447,11 @@
       var today = new Date();
       var tomorrow = new Date();
       tomorrow.setDate(today.getDate() + 1);
+      var st = moment(today).format("YYYY-MM-DD");
+      var end = moment(tomorrow).format("YYYY-MM-DD")
+      $(".date_st").val(st);
+      $(".date_end").val(end);
+      $("#book_date").html(`${moment(st).format('LL')} - ${moment(end).format('LL')}`);
       $('#pick-up').datepicker('setDate', today);
       $('#return').datepicker('setDate', tomorrow);
     })(jQuery);
